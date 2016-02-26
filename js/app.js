@@ -85,7 +85,8 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
         });
 
         $routeProvider.when(URLS.ROUTES.DETAIL, {
-          templateUrl: path + 'detail.html'
+          templateUrl: path + 'detail.html',
+          controller: 'detailsController as vm'
         });
 
         $routeProvider.otherwise({

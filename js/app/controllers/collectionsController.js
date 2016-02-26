@@ -2,7 +2,9 @@ angular.module('app').controller('collectionsController', [function(){
 
   var number_of_collection = location.hash.split('=')[1];
 
-  if ( kondakova.collections == undefined ) { alert("произошла ошибка - перезагрузите сайт");}
+  if ( kondakova.collections == undefined ) {
+    $('#collections').find('h3').text('Ого! Коллекция потерялась.. попробуйте открыть ее еще раз..');
+  }
 
 
     var collection = kondakova.collections[number_of_collection], divs = '';
