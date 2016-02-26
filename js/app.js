@@ -23,7 +23,8 @@ app.constant('URLS', {
       PATHS: {
         TEMPLATES: 'views/',
         MENU: 'views/partials/_menu.html',
-        FOOTER: 'views/partials/_footer.html'
+        FOOTER: 'views/partials/_footer2.html'
+        //FOOTER: 'views/partials/_footer.html' // трех колоночный для адреса
       }
     });
 
@@ -52,7 +53,8 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
         });
 
         $routeProvider.when(URLS.ROUTES.COLLECTIONS, {
-          templateUrl: path + 'collections.html'
+          templateUrl: path + 'collections.html',
+          controller: 'collectionsController as vm'
         });
 
         $routeProvider.when(URLS.ROUTES.INFO, {
@@ -60,7 +62,8 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
         });
 
         $routeProvider.when(URLS.ROUTES.SHOP, {
-          templateUrl: path + 'shop.html'
+          templateUrl: path + 'shop.html',
+          controller: 'shopsController as vm'
         });
 
         $routeProvider.when(URLS.ROUTES.NEWS, {
@@ -68,7 +71,8 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
         });
 
         $routeProvider.when(URLS.ROUTES.CONTACTS, {
-          templateUrl: path + 'contacts.html',
+          //templateUrl: path + 'contacts.html',
+          templateUrl: path + 'contacts_without_address.html',
           controller: 'contactsController as vm'
         });
 
@@ -96,3 +100,41 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
         //    //requireBase: false
         //});
       }]);
+
+$(function(){
+//{param1: 'value1'}
+
+  window.kondakova = {};
+
+  $("#js-menu-collections").empty();
+  $.ajax({
+    url: './js/json/menu-collections.json',
+    type: 'GET',
+    dataType: 'json',
+    data: ""
+  }).done(function(data) {
+    //console.info(data.collections);
+    window.kondakova.collections = data.collections;
+    var list = '';
+    $(data.collections).each(function(index, item) {
+      list += "<li><a href='#collections?collection="+index+"' data-index='"+index+"'>" + item.name + "</a></li>";
+    });
+    $("#js-menu-collections").html(list);
+  }).fail(function() {
+    console.error("ошибка загрузки меню для коллекций..");
+  });
+  // .always(function() {
+  //   console.log("complete");
+  // });
+
+  window.kondakova.sleep = function(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
+  };
+
+
+});

@@ -1,5 +1,4 @@
-angular.module('app')
-    .controller('rootController', [function () {
+angular.module('app').controller('rootController', [function () {
 
         var resize = function () {
             //$('#all-footer').addClass('hidden');
@@ -8,7 +7,7 @@ angular.module('app')
             $('#intro-image').css('height', window_height - navbar_height);
             console.log(window_height);
             console.log(navbar_height);
-        }
+        };
 
         resize();
 

@@ -1,5 +1,4 @@
-angular.module('app')
-    .controller('contactsController', [function(){
+angular.module('app').controller('contactsController', [function(){
 
         try {
             ymaps.ready(function () {
