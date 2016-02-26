@@ -1,0 +1,98 @@
+/* your styles go here */
+
+#sizes-table {
+  text-align: center;
+}
+#sizes-table thead {
+  font-weight: bold;
+}
+@media (max-width: 991px) {
+  #sizes-table {
+    display: none;
+    font-size: 0.6em;
+  }
+}
+.brd-red {
+  border: 1px solid red !important;
+}
+.brd-green {
+  border: 1px solid green !important;
+}
+.brd-blue {
+  border: 1px solid blue !important;
+}
+.brd-black {
+  border: 1px solid black !important;
+}
+#navigation ul li {
+  font-weight: bold;
+  padding: 0 5px;
+}
+ul.menu-bottom li {
+  padding: 1px 0;
+}
+html,
+body {
+  height: 100%;
+}
+#all {
+  display: table;
+  width: 100%;
+  min-height: 100%;
+  padding-top: 80px;
+}
+#all #all-content {
+  display: table-row;
+  height: 100%;
+}
+#all #all-footer {
+  display: table-row;
+  width: 100%;
+}
+#all #map {
+  margin-bottom: 20px;
+}
+#all #intro-image {
+  width: 100%;
+  height: 100%;
+}
+#all .bgfill {
+  background: url('../img/bg.jpg') no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position-y: -80px;
+}
+
+.navbar ul.nav > li > a {
+  text-decoration: none;
+}
+
+/* font-family: "CenturyGothicRegular"; */
+@font-face {
+    font-family: "CenturyGothicRegular";
+    src: url("./fonts/CenturyGothicRegular/CenturyGothicRegular.eot");
+    src: url("./fonts/CenturyGothicRegular/CenturyGothicRegular.eot?#iefix")format("embedded-opentype"),
+    url("./fonts/CenturyGothicRegular/CenturyGothicRegular.woff") format("woff"),
+    url("./fonts/CenturyGothicRegular/CenturyGothicRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+* {
+  font-family: "CenturyGothicRegular" , "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#footer {
+  text-align: center;
+}
+
+#about-content > .row > div:first-child {
+  padding-bottom:30px;
+}
+
+#about-content p {
+  text-align: justify;
+}
+
