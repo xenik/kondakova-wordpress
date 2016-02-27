@@ -1,15 +1,18 @@
 {"category": [
   {"name": "skirts",
   "items": [
-    {"id":"10001","name": "TEST", "link": "img/collections/IMG_8961.jpg", "price": "1000.23", "description": "bla-bla-bla 1"}
+    {"id":"10001","name": "TEST", "link": "img/collections/IMG_8961.jpg", "price": "1000.23", "description": "bla-bla-bla 1",
+     "sctucture": ["Полиэстер","Ткань 1"," Ткань 2"]}
   ]},
   {"name": "clothes",
   "items": [
-    {"id":"10002","name": "TEST2", "link": "img/collections/IMG_9292.jpg", "price": "222.00", "description": "bla-bla-bla 2"}
+    {"id":"10002","name": "TEST2", "link": "img/collections/IMG_9292.jpg", "price": "222.00", "description": "bla-bla-bla 2",
+     "sctucture": ["Полиэстер","Ткань 1"," Ткань 2", "Ткань 4", "Ткань 5"]}
   ]},
   {"name": "atelier",
   "items": [
-    {"id":"10003","name": "TEST-atelier", "link": "img/collections/IMG_9175.jpg", "price": "0.00", "description": "bla-bla-bla 3"}
+    {"id":"10003","name": "TEST-atelier", "link": "img/collections/IMG_9175.jpg", "price": "0.00", "description": "bla-bla-bla 3",
+     "sctucture": ["Ткань 1"," Ткань 2"]}
   ]}
 ]}
 

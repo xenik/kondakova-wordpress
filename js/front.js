@@ -229,13 +229,13 @@ function productQuickViewGallery() {
 /* product detail sizes */
 
 function productDetailSizes() {
-    $('.sizes a').click(function (e) {
-	e.preventDefault();
-	$('.sizes a').removeClass('active');
-	$('.size-input').prop('checked', false);
-	$(this).addClass('active');
-	$(this).next('input').prop('checked', true)
-    });
+  $('.sizes a').click(function (e) {
+  	e.preventDefault();
+  	$('.sizes a').removeClass('active');
+  	$('.size-input').prop('checked', false);
+  	$(this).addClass('active');
+  	$(this).next('input').prop('checked', true);
+  });
 }
 
 

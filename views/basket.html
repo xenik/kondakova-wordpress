@@ -1,118 +1,124 @@
-<!--     <div id="all">
-  <div id="content"> -->
+<div class="container">
+  <div class="box text-center">
+    <h3 class="text-uppercase">Корзина</h3>
+  </div>
+  <div class="col-md-12 clearfix" id="basket">
+    <div class="">
+      <form method="post" action="checkout1.html">
 
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th colspan="2">Позиция</th>
+                <th>Размер</th>
+                <th>Количество</th>
+                <th>Цена за шт.</th>
+                <th>Скидка</th>
+                <th colspan="2">Всего</th>
+              </tr>
+            </thead>
+            <tbody id='js-basket-table-body'>
+           <!--   <tr>
+                <td>
+                  <a href="#">
+                    <img src="img/detailsquare.jpg" alt="White Blouse Armani">
+                  </a>
+                </td>
+                <td><a href="#">White Blouse Armani</a>
+                </td>
+                <td>
+                  <input type="number" value="2" class="form-control" min='1'>
+                </td>
+                <td>123.00</td>
+                <td>0.00</td>
+                <td>246.00</td>
+                <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#">
+                    <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
+                  </a>
+                </td>
+                <td><a href="#">Black Blouse Armani</a>
+                </td>
+                <td>
+                  <input type="number" value="1" class="form-control" min='1'>
+                </td>
+                <td>200.00</td>
+                <td>0.00</td>
+                <td>200.00</td>
+                <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                </td>
+              </tr> -->
+            </tbody>
+            <tfoot id='js-basket-table-amout'>
+<!--               <tr>
+                <th colspan="5">Итого</th>
+                <th colspan="2">446.00</th>
+              </tr> -->
+            </tfoot>
+          </table>
+        </div>
 
-    <div class="container">
-      <div class="box text-center">
-        <h3 class="text-uppercase">Корзина</h3>
+        <div class="box-footer">
+          <div class="pull-left">
+            <a href="#shop" class="btn btn-default"><i class="fa fa-chevron-left"></i> Продолжить покупки</a>
+          </div>
+          <div class="pull-right">
+            <!-- <button type="button" class="btn btn-default"><i class="fa fa-refresh"></i> Обновить корзину</button> -->
+            <button type="button" id='js-basket-btn-order' class="btn btn-primary" data-toggle="modal" data-target="#bs-example-modal-sm">Оформить заказ <i class="fa fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+<div class="modal fade bs-example-modal-sm" id='bs-example-modal-sm' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header" style='background-color:#5091da;'>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" style='color:#fff;'>Оформление заказа</h4>
       </div>
-<!--                 <div class="col-md-12">
-                    <ul class="breadcrumb">
+      <div class="modal-body">
 
-                        <li><a href="index.html">Home</a>
-                        </li>
-                        <li>Shopping cart</li>
-                    </ul>
+        <form>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Как вас зовут</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ваше имя">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Укажите Вашу почту</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email..">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail12">Укажите Ваш телефон</label>
+            <input type="phone" class="form-control" id="exampleInputEmail12" placeholder="Телефон..">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail3">Комментарий</label>
+            <textarea name="aaa" class="form-control" id="exampleInputEmail3" placeholder="Любой текст.." cols='4'></textarea>
+          </div>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>
+        <button type="button" class="btn btn-primary" style='margin-left:0;' id='js-basket-btn-order-send'>Отправить заказ</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-                    <div class="box text-center">
-
-                        <div class="row">
-                            <div class="col-sm-10 col-sm-offset-1">
-                                <h1>Shopping cart</h1>
-                                <p class="text-muted">You currently have 3 item(s) in your cart.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                -->
-            <div class="col-md-9 clearfix" id="basket">
-
-              <div class="">
-
-                <form method="post" action="checkout1.html">
-
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th colspan="2">Позиция</th>
-                          <th>Количество</th>
-                          <th>Цена за шт.</th>
-                          <th>Скидка</th>
-                          <th colspan="2">Всего</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <a href="#">
-                              <img src="img/detailsquare.jpg" alt="White Blouse Armani">
-                            </a>
-                          </td>
-                          <td><a href="#">White Blouse Armani</a>
-                          </td>
-                          <td>
-                            <input type="number" value="2" class="form-control" min='1'>
-                          </td>
-                          <td>123.00</td>
-                          <td>0.00</td>
-                          <td>246.00</td>
-                          <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">
-                              <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                            </a>
-                          </td>
-                          <td><a href="#">Black Blouse Armani</a>
-                          </td>
-                          <td>
-                            <input type="number" value="1" class="form-control" min='1'>
-                          </td>
-                          <td>200.00</td>
-                          <td>0.00</td>
-                          <td>200.00</td>
-                          <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                          </td>
-                        </tr>
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <th colspan="5">Итого</th>
-                          <th colspan="2">446.00</th>
-                        </tr>
-                      </tfoot>
-                    </table>
-
-                  </div>
-                  <!-- /.table-responsive -->
-
-                  <div class="box-footer">
-                    <div class="pull-left">
-                      <a href="" class="btn btn-default"><i class="fa fa-chevron-left"></i> Продолжить покупки</a>
-                    </div>
-                    <div class="pull-right">
-                      <button type="button" class="btn btn-default"><i class="fa fa-refresh"></i> Обновить корзину</button>
-                      <button type="button" class="btn btn-primary">Оформить заказ <i class="fa fa-chevron-right"></i>
-                      </button>
-                    </div>
-                  </div>
-
-                </form>
-
-              </div>
-              <!-- /.box -->
-
-            </div>
-            <!-- /.col-md-9 -->
-         </div>
-         <!-- /.container -->
-       <!-- </div> -->
-       <!-- /#content -->
-      <!-- </div> -->
-      <!-- /#all -->
+</div>
