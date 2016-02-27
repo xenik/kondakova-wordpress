@@ -120,7 +120,7 @@ $(function(){
     window.kondakova.collections = data.collections;
     var list = '';
     $(data.collections).each(function(index, item) {
-      list += "<li><a href='#collections?collection="+index+"' data-index='"+index+"'>" + item.name + "</a></li>";
+      list += "<li><a href='#collections?collection="+index+"' data-index='"+index+"' class='menu-item'>" + item.name + "</a></li>";
     });
     $("#js-menu-collections").html(list);
   }).fail(function() {
@@ -138,8 +138,6 @@ $(function(){
       }
     }
   };
-
-
 
 
 
@@ -379,3 +377,11 @@ $(window).resize(function () {
   }
 });
 */
+
+$('body').on('click', function(event) {
+  console.log($(event.target).hasClass('menu-item'));
+  if ($(event.target).hasClass('menu-item')) {
+    $('[data-toggle=collapse]').click();
+  }
+});
+
