@@ -386,7 +386,7 @@ $(window).resize(function () {
 */
 
 $('body').on('click', function(event) {
-  console.log($(event.target).hasClass('menu-item'));
+  //console.log($(event.target).hasClass('menu-item'));
   if ($(event.target).hasClass('menu-item')) {
     $('[data-toggle=collapse]').click();
   }

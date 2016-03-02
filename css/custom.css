@@ -100,3 +100,10 @@ body {
 .box.text-center > h3 {
   color: #161C36;
 }
+
+
+#content #checkout .table tbody tr td input,
+#content #basket .table tbody tr td input,
+#content #customer-order .table tbody tr td input {
+  width: 65px;
+}

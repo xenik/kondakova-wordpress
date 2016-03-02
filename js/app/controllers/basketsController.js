@@ -49,19 +49,22 @@ angular.module('app').controller('basketsController', [function(){
       //console.log('hello world change');
       var el = $(this),
           value = el.val(),
-          idx = el.data('idx'),
-          price = el.parent().parent().find('.cart_price').text(),
-          amount = el.parent().parent().find('.cart_amount').text();
+          idx = el.data('idx'); //,
+          // price = el.parent().parent().find('.cart_price').text(),
+          // amount = el.parent().parent().find('.cart_amount').text();
 
           console.log(kondakova.cart);
-
           kondakova.cart[idx].qty = value;
           renderCartItems();
-
-
-      //console.log(value);
-
     });
+
+
+    $('.cart_qty').on('mouseout', function(e) {
+      kondakova.cart[$(this).data('idx')].qty = $(this).val();
+      renderCartItems();
+    });
+
+    // $('.cart_qty').on('mouseover', function(e) { return false; } );
 
   }
 
