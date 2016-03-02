@@ -144,9 +144,9 @@ $(function(){
   //sliderHomepage();
   //fullScreenContainer();
   //productDetailGallery(4000); //moved to detailsControllet
-  productQuickViewGallery();
-  //menuSliding();
-  productDetailSizes();
+   productQuickViewGallery();//moved to  collectionsController
+  // //menuSliding();
+   productDetailSizes();//moved to collectionsController
   utils();
   //demo();
 
@@ -189,12 +189,12 @@ $(function(){
 
 /* picture zoom */
 
-// function pictureZoom() {
-//   $('.product .image, .post .image').each(function () {
-//     var imgHeight = $(this).find('img').height();
-//     $(this).height(imgHeight);
-//   });
-// }
+function pictureZoom() {
+  $('.product .image, .post .image').each(function () {
+    var imgHeight = $(this).find('img').height();
+    $(this).height(imgHeight);
+  });
+}
 
 //full screen intro
 
@@ -273,7 +273,6 @@ function productDetailGallery(confDetailSwitch) {
   var timer = setInterval(autoSwitch, confDetailSwitch);
 
   $("#productMain .thumb").click(function (e) {
-    console.log('hello moto');
     switchImage($(this));
     clearInterval(timer);
     timer = setInterval(autoSwitch, confDetailSwitch);
@@ -304,6 +303,7 @@ function productDetailGallery(confDetailSwitch) {
 }
 
 function productQuickViewGallery() {
+      console.log('hello from productQuickViewGallery');
   $('.quick-view').each(function () {
     var element = $(this);
 
@@ -326,6 +326,7 @@ function productQuickViewGallery() {
 
 /* product detail sizes */
 function productDetailSizes() {
+  console.log('hello from productDetailSizes');
   $('.sizes a').click(function (e) {
     e.preventDefault();
     $('.sizes a').removeClass('active');
@@ -339,6 +340,7 @@ function productDetailSizes() {
 
 
 $.fn.alignElementsSameHeight = function () {
+  console.log('hello from alignElementsSameHeight');
     $('.same-height-row').each(function () {
 
   var maxHeight = 0;
@@ -366,13 +368,13 @@ $.fn.alignElementsSameHeight = function () {
 };
 
 
-/*
+
 $(window).load(function () {
     var windowWidth = $(window).width();
     $(this).alignElementsSameHeight();
-    //pictureZoom();
+    pictureZoom();
 });
-
+/*
 
 $(window).resize(function () {
   var newWindowWidth = $(window).width();
