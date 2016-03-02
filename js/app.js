@@ -143,7 +143,7 @@ $(function(){
 
   //sliderHomepage();
   //fullScreenContainer();
-  productDetailGallery(4000);
+  //productDetailGallery(4000); //moved to detailsControllet
   productQuickViewGallery();
   //menuSliding();
   productDetailSizes();
@@ -269,36 +269,38 @@ function str_to_numeric_to_fixed(str) {
 
 /* product detail gallery */
 function productDetailGallery(confDetailSwitch) {
-    $('#productMain .thumb:first').addClass('active');
-    var timer = setInterval(autoSwitch, confDetailSwitch);
-    $("#productMain .thumb").click(function (e) {
+  $('#productMain .thumb:first').addClass('active');
+  var timer = setInterval(autoSwitch, confDetailSwitch);
 
-  switchImage($(this));
-  clearInterval(timer);
-  timer = setInterval(autoSwitch, confDetailSwitch);
-  e.preventDefault();
-    }
-    );
-    $('#productMain #mainImage').hover(function () {
-  clearInterval(timer);
-    }, function () {
-  timer = setInterval(autoSwitch, confDetailSwitch);
-    });
-    function autoSwitch() {
-  var nextThumb = $('#productMain .thumb.active').closest('div').next('div').find('.thumb');
-  if (nextThumb.length === 0) {
+  $("#productMain .thumb").click(function (e) {
+    console.log('hello moto');
+    switchImage($(this));
+    clearInterval(timer);
+    timer = setInterval(autoSwitch, confDetailSwitch);
+    e.preventDefault();
+  });
+
+  $('#productMain #mainImage').hover(
+    function () { clearInterval(timer); },
+    function () { timer = setInterval(autoSwitch, confDetailSwitch); });
+
+  function autoSwitch() {
+    var nextThumb = $('#productMain .thumb.active').closest('div').next('div').find('.thumb');
+
+    if (nextThumb.length === 0) {
       nextThumb = $('#productMain .thumb:first');
+    }
+
+    switchImage(nextThumb);
   }
-  switchImage(nextThumb);
-    }
 
-    function switchImage(thumb) {
+  function switchImage(thumb) {
+    $('#productMain .thumb').removeClass('active');
+    var bigUrl = thumb.attr('href');
+    thumb.addClass('active');
 
-  $('#productMain .thumb').removeClass('active');
-  var bigUrl = thumb.attr('href');
-  thumb.addClass('active');
-  $('#productMain #mainImage img').attr('src', bigUrl);
-    }
+    $('#productMain #mainImage img').attr('src', bigUrl);
+  }
 }
 
 function productQuickViewGallery() {
@@ -306,10 +308,12 @@ function productQuickViewGallery() {
     var element = $(this);
 
     element.find('.thumb:first').addClass('active');
+
     element.find(".thumb").click(function (e) {
       switchImage($(this));
       e.preventDefault();
     });
+
   });
 
   function switchImage(thumb) {

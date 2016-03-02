@@ -112,3 +112,25 @@ body {
 /*  position: absolute;
   left: 30%;*/
 }
+
+#about-content > .row > div:first-child {
+  /* padding-bottom: 30px; */
+}
+
+@media (max-width: 991px) {
+  #navbar .navbar-header {
+    margin-right:5%;
+  }
+}
+
+@media (min-width: 991px) {
+  #navbar .navbar-header {
+    margin-right:8%;
+  }
+}
+
+@media (min-width: 1200px) {
+  #navbar .navbar-header {
+    margin-right:15%;
+  }
+}

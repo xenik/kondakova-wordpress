@@ -87,4 +87,6 @@ angular.module('app').controller('detailsController', [function(){
 
   console.log('hi before exit from detailsController');
 
+
+  productDetailGallery(5000);
 }]);
