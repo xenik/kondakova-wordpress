@@ -14,7 +14,7 @@ app.constant('URLS', {
         COLLECTIONS: '/collections',
         INFO:'/info',
         NEWS: '/news',
-        CONTACTS: '/contacts',
+        // CONTACTS: '/contacts',
         PRESS: '/press',
         SHOP: '/shop',
         BASKET: '/basket',
@@ -70,11 +70,11 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
           templateUrl: path + 'news.html'
         });
 
-        $routeProvider.when(URLS.ROUTES.CONTACTS, {
-          //templateUrl: path + 'contacts.html',
-          templateUrl: path + 'contacts_without_address.html',
-          controller: 'contactsController as vm'
-        });
+        // $routeProvider.when(URLS.ROUTES.CONTACTS, {
+        //   //templateUrl: path + 'contacts.html',
+        //   templateUrl: path + 'contacts_without_address.html',
+        //   controller: 'contactsController as vm'
+        // });
 
         $routeProvider.when(URLS.ROUTES.PRESS, {
           templateUrl: path + 'press.html'
@@ -259,6 +259,13 @@ function utils() {
     }, 1000);
   }
 }
+
+function str_to_numeric_to_fixed(str) {
+  var helpNum = 0;
+  helpNum = +str;
+  return helpNum.toFixed(2);
+}
+
 
 /* product detail gallery */
 function productDetailGallery(confDetailSwitch) {

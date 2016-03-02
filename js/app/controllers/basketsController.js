@@ -15,13 +15,14 @@ angular.module('app').controller('basketsController', [function(){
     var tds = '';
     $('#js-basket-table-body').empty();
 
+
     $.each( kondakova.cart, function(i, v) {
 
       tds += "<tr><td><a href='#detail?" + v.id + "'><img src='"+v.link+"' alt='"+v.name+"'></a></td>" +
              "<td><a href='#detail?" + v.id + "'>"+v.name+"</a></td>" +
              "<td>"+v.size+"</td>"+
-             "<td><input type='number' value='"+v.qty+"' class='form-control' min='1'></td>" +
-             "<td>"+v.price+"</td><td>"+0.00+"</td><td>"+(v.qty*v.price)+"</td><td><a href='#basket'><i class='fa fa-trash-o'></i></a></td>"+
+             "<td><input type='number' value='"+v.qty+"' class='form-control cart_qty' min='1' data-idx='"+i+"'></td>" +
+             "<td class='cart_price'>"+v.price+"</td><td>"+0.00+"</td><td class='cart_amount'>"+(str_to_numeric_to_fixed(v.qty * v.price))+"</td><td><a href='#basket'><i class='fa fa-trash-o'></i></a></td>"+
              "<td class='hide'>"+v.line_item_id+"</td></tr>";
 
     });
@@ -39,6 +40,29 @@ angular.module('app').controller('basketsController', [function(){
       kondakova.cart = kondakova.cart.filter(function(el) { return el.line_item_id != line_item_id;} );
       renderCartItems();
     });
+
+    $('.cart_qty').on('blur', function(e) {
+      console.log('hello world blur');
+    });
+
+    $('.cart_qty').on('change', function(e) {
+      //console.log('hello world change');
+      var el = $(this),
+          value = el.val(),
+          idx = el.data('idx'),
+          price = el.parent().parent().find('.cart_price').text(),
+          amount = el.parent().parent().find('.cart_amount').text();
+
+          console.log(kondakova.cart);
+
+          kondakova.cart[idx].qty = value;
+          renderCartItems();
+
+
+      //console.log(value);
+
+    });
+
   }
 
   $('#js-basket-btn-order-send').on('click', function() {
