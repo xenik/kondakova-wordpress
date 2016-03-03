@@ -1,7 +1,8 @@
 angular.module('app').controller('basketsController', [function(){
-  console.log('hello from basketsController');
+  // console.log('hello from basketsController');
 
   if (kondakova.cart && kondakova.cart.length > 0) {
+    // console.log(kondakova.cart);
     renderCartItems();
   } else {
 
@@ -42,7 +43,7 @@ angular.module('app').controller('basketsController', [function(){
     });
 
     $('.cart_qty').on('blur', function(e) {
-      console.log('hello world blur');
+      // console.log('hello world blur');
     });
 
     $('.cart_qty').on('change', function(e) {
@@ -53,14 +54,16 @@ angular.module('app').controller('basketsController', [function(){
           // price = el.parent().parent().find('.cart_price').text(),
           // amount = el.parent().parent().find('.cart_amount').text();
 
-          console.log(kondakova.cart);
-          kondakova.cart[idx].qty = value;
+          // console.log(kondakova.cart);
+          // console.log(value);
+          kondakova.cart[idx].qty = Number( Number(value).toFixed(2));
           renderCartItems();
     });
 
 
     $('.cart_qty').on('mouseout', function(e) {
-      kondakova.cart[$(this).data('idx')].qty = $(this).val();
+      // console.log( $(this).val() );
+      kondakova.cart[$(this).data('idx')].qty = Number( Number($(this).val()).toFixed(2));
       renderCartItems();
     });
 
