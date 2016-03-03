@@ -141,3 +141,7 @@ body {
     margin-right:15%;
   }
 }
+
+#content .quick-view-main-image img {
+  max-height: 100%;
+}
