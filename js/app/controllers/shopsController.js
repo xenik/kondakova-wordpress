@@ -62,10 +62,10 @@ angular.module('app').controller('shopsController', [function ()  {
         if(category == 'atelier') {
           $.each(v.items, function(idx, val) {
             divs += "<div class='col-md-4 col-sm-6'><div class='product'><div class='image'>" +
-                    "<a href='#detail?" + val.id + "'><img src='" + val.link +
+                    "<a href='#detail?" + val.id + ":atelier'><img src='" + val.link +
                     "' alt='product' class='img-responsive image1'></a>" +
                     "</div><div class='text'><h3>"+
-                    "<a href='#detail?" + val.id + "' data-toggle='modal' data-target='#product-quick-view-modal'>" +
+                    "<a href='#detail?" + val.id + ":atelier' data-toggle='modal' data-target='#product-quick-view-modal'>" +
                     val.name + "</a></h3><p class='price'>" +
                     'Индивидуальный пошив' + "</p></div></div></div>";
           });

@@ -22,7 +22,7 @@ angular.module('app').controller('basketsController', [function(){
              "<td><a href='#detail?" + v.id + "'>"+v.name+"</a></td>" +
              "<td>"+v.size+"</td>"+
              "<td><input type='number' value='"+v.qty+"' class='form-control cart_qty' min='1' data-idx='"+i+"'></td>" +
-             "<td class='cart_price'>"+v.price+"</td><td>"+0.00+"</td><td class='cart_amount'>"+(str_to_numeric_to_fixed(v.qty * v.price))+"</td><td><a href='#basket'><i class='fa fa-trash-o'></i></a></td>"+
+             "<td class='cart_price'>"+v.price+"</td><td>"+0.00+"</td><td class='cart_amount'>"+((v.price === '') ? '-' : (str_to_numeric_to_fixed(v.qty * v.price)) ) +"</td><td><a href='#basket'><i class='fa fa-trash-o'></i></a></td>"+
              "<td class='hide'>"+v.line_item_id+"</td></tr>";
 
     });
