@@ -337,7 +337,7 @@ function productDetailGallery(confDetailSwitch) {
 }
 
 function productQuickViewGallery() {
-      console.log('hello from productQuickViewGallery');
+      // console.log('hello from productQuickViewGallery');
   $('.quick-view').each(function () {
     var element = $(this);
 
@@ -360,7 +360,7 @@ function productQuickViewGallery() {
 
 /* product detail sizes */
 function productDetailSizes() {
-  console.log('hello from productDetailSizes');
+  // console.log('hello from productDetailSizes');
   $('.sizes a').click(function (e) {
     e.preventDefault();
     $('.sizes a').removeClass('active');
@@ -374,7 +374,7 @@ function productDetailSizes() {
 
 
 $.fn.alignElementsSameHeight = function () {
-  console.log('hello from alignElementsSameHeight');
+  // console.log('hello from alignElementsSameHeight');
     $('.same-height-row').each(function () {
 
   var maxHeight = 0;

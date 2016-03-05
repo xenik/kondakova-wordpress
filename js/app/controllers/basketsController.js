@@ -71,33 +71,70 @@ angular.module('app').controller('basketsController', [function(){
 
   }
 
-  $('#js-basket-btn-order-send').on('click', function() {
-    //alert("Спасибо, мы свяжемся с Вами в близжайшее время! \n p.s. Я не успел подключить отправку на почту. \n наверное нужно очищать корзину, да?");
-
-    var formData = {
-    'user_name'              : $('#user_name').val(),
-    'user_email'             : $('#user_email').val(),
-    'user_phone'             : $('#user_phone').val(),
-    'user_comment'           : $('#user_comment').val()
-    };
-
-    $.ajax({
-      type: "post",
-      url: "test_email.php",
-      data: formData,
-      success: function(a,b,c){
-         alert("Email sent");
-         console.log(a,b,c);
+  $("#basket-form").validate({
+      rules: {
+          user_name: "required",
+          user_email: {
+              required: true,
+              email: true
+          },
+          user_phone: {
+              required: true,
+              rangelength: [5,11],
+              digits: true
+          },
+          user_comment: "required"
+      // },
+      // messages: {
+      //     user_name: "Please enter your firstname",
+      //     user_email: "Please enter your lastname",
+      //     user_phone: {
+      //         required: "Please provide a password",
+      //         minlength: "Your password must be at least 5 characters long"
+      //     },
+      //     user_email: "Please enter a valid email address",
+      //     user_comment: "Please accept our policy"
       },
-      error: function(x,y,z){
-        console.log(x,y,z);
-          alert("Please try to resubmit");
-      }
-    });
+      errorClass: "text-danger",
+      submitHandler: function(form) {
+        //   form.submit();
+           // console.warn(form);
+        //$('#js-basket-btn-order-send').click();
 
+        var formData = {
+        'user_name'              : $('#user_name').val(),
+        'user_email'             : $('#user_email').val(),
+        'user_phone'             : $('#user_phone').val(),
+        'user_comment'           : $('#user_comment').val(),
+        'user_cart'              : kondakova.cart
+        };
 
-    $('#bs-example-modal-sm').modal('hide');
+        console.warn(formData);
+
+        var d = $.ajax({
+          type: "post",
+          url: "test_email.php",
+          data: formData,
+          success: function(a,b,c){
+             //alert("Email sent");
+             // console.log(a,b,c);
+          },
+          error: function(x,y,z){
+            // console.log(x,y,z);
+            //  alert("Please try to resubmit");
+          }
+        });
+
+        d.done(function(){
+          // console.log('dooooooone');
+          $('#bs-example-modal-sm').modal('hide');
+        });
+    }
   });
 
+  $('#js-basket-btn-order-send').on('click', function() {
+    //alert("Спасибо, мы свяжемся с Вами в близжайшее время! \n p.s. Я не успел подключить отправку на почту. \n наверное нужно очищать корзину, да?");
+    $("#basket-form").submit();
+  });
 
 }]);

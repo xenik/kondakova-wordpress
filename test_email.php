@@ -27,11 +27,48 @@ $name = strip_tags($_POST['user_name']);
 $email = strip_tags($_POST['user_email']);
 $phone = strip_tags($_POST['user_phone']);
 $comment = strip_tags($_POST['user_comment']);
+$cart = $_POST['user_cart'];
 
 //echo $name;
-echo $email;
-echo $phone;
-echo $comment;
+// echo $email;
+// echo $phone;
+// echo $comment;
+//echo $cart;
+
+
+$str = "";
+
+foreach ($cart as $item) {
+  $str .= "<tr>";
+//  $str .= $item;
+  foreach ($item as $key => $value) {
+    //$str .= $item;
+//    $str .= "$key ----- $value <br />";
+    if($key == "id"){
+      $item_artikul = $value;
+    }
+    if($key == "name"){
+      $item_name = $value;
+    }
+    if($key == "size"){
+      $item_size = $value;
+    }
+    if($key == "qty"){
+      $item_qty = $value;
+    }
+    if($key == "price"){
+      $item_price = $value;
+    }
+  }
+  $str .= "<td>".$item_artikul."</td>".
+          "<td>".$item_name."</td>".
+          "<td>".$item_size."</td>".
+          "<td>".$item_qty."</td>".
+          "<td>".$item_price."</td>".
+          "<td>".$item_qt*$item_price."</td>"
+  $str .= "</tr>";
+}
+
 
 
 //$to = "somebody@example.com, somebodyelse@example.com";
@@ -44,24 +81,29 @@ $message = "
 <title>hello world</title>
 </head>
 <body>
-<p>This email contains HTML Tags!</p>
-name: ". $name ."
-email: " . $email . "
-phone:  " . $phone . "
-comment:  " . $comment . "
+<p>Заказ оформлен!</p>
+Имя: ". $name ."<br>
+email: " . $email . "<br>
+Телефон:  " . $phone . "<br>
+Комментарий:  " . $comment . "<br>
 <table>
 <tr>
-<th>Firstname</th>
-<th>Lastname</th>
+<th>Артикул</th>
+<th>Название</th>
+<th>Размер</th>
+<th>Количество</th>
+<th>Цена за штуку</th>
+<th>Сумма</th>
 </tr>
-<tr>
-<td>John</td>
-<td>Doe</td>
-</tr>
+".$str."
 </table>
 </body>
 </html>
 ";
+
+
+
+
 
 // Always set content-type when sending HTML email
 $headers = "MIME-Version: 1.0" . "\r\n";
