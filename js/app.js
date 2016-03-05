@@ -1,5 +1,6 @@
 'use strict';
 
+(function() {
 var app = angular.module('app', ['ngCookies', 'ngRoute']);
 
 // CONSTANTS
@@ -103,6 +104,22 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
         //});
       }]);
 
+
+  app.controller('StoreController', function() {
+    this.product = gem;
+  });
+
+  var gem = {
+    name: "Hat",
+    price: 2.95,
+    description: 'Lorem ipsum Cillum nulla fugiat sint.',
+    canPurchase: true
+  }
+
+
+})();
+
+
 $(function(){
 //{param1: 'value1'}
 
@@ -118,11 +135,13 @@ $(function(){
   }).done(function(data) {
     //console.info(data.collections);
     window.kondakova.collections = data.collections;
-    var list = '';
+      console.log('data.collections came');
+        var list = '';
     $(data.collections).each(function(index, item) {
       list += "<li><a href='#collections?collection="+index+"' data-index='"+index+"' class='menu-item'>" + item.name + "</a></li>";
     });
     $("#js-menu-collections").html(list);
+
   }).fail(function() {
     console.error("ошибка загрузки меню для коллекций..");
   });
@@ -138,7 +157,6 @@ $(function(){
       }
     }
   };
-
 
 
   //sliderHomepage();

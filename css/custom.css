@@ -149,7 +149,7 @@ body {
   padding: 10px;
 }
 
-
+/*
 @media (max-width: 480px) {
   .modal {
       position: fixed;
@@ -167,7 +167,7 @@ body {
       -webkit-overflow-scrolling: touch;
    }
 }
-
+*/
 /*#basket {
   margin-bottom:15px;
 }*/

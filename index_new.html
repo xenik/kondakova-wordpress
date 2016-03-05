@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 
 <head>
     <meta charset="utf-8">
@@ -33,9 +33,16 @@
     <link rel="shortcut icon" href="favicon.png">
     <!-- <link rel="shortcut icon" href="logosmall_new.ico"> -->
 </head>
-<body class="no-padding" ng-app="app">
+<body class="no-padding"> <!-- ng-app="app"-->
 
 <ng-include src="URLS.PATHS.MENU"></ng-include>
+<!--
+<div id='ang' ng-controller="StoreController as store" style='margin-top:100px;'>
+ <h1>{{store.product.name}}</h1>
+ <h2>${{store.product.price}}</h2>
+ <p>{{store.product.description}}</p>
+ <button type="btn btn-default" ng-show="store.product.canPurchase"> Add to Cart </button>
+</div> -->
 
 <div id="all">
     <div id="all-content">
