@@ -142,7 +142,20 @@ $(function(){
     });
     $("#js-menu-collections").html(list);
 
-    $('.menu-item').on('click', function(e) { $('body').scrollTop(0); });
+/*
+var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+
+$(document).on('click touchstart', '.backtotop', function() {
+    if (iOS) {
+        $('html, body', parent.document).animate({ scrollTop: $("body").offset().top},1500,"easeOutQuart");
+    } else {
+        $('html, body').animate({ scrollTop: $("body").offset().top},1500,"easeOutQuart");
+    }
+});
+*/
+
+
+    $('.menu-item').on('click touchstart', function(e) { $('body').scrollTop(0); });
 
   }).fail(function() {
     console.error("ошибка загрузки меню для коллекций..");

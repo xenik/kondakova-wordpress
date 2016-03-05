@@ -72,7 +72,30 @@ angular.module('app').controller('basketsController', [function(){
   }
 
   $('#js-basket-btn-order-send').on('click', function() {
-    alert("Спасибо, мы свяжемся с Вами в близжайшее время! \n p.s. Я не успел подключить отправку на почту. \n наверное нужно очищать корзину, да?");
+    //alert("Спасибо, мы свяжемся с Вами в близжайшее время! \n p.s. Я не успел подключить отправку на почту. \n наверное нужно очищать корзину, да?");
+
+    var formData = {
+    'user_name'              : $('#user_name').val(),
+    'user_email'             : $('#user_email').val(),
+    'user_phone'             : $('#user_phone').val(),
+    'user_comment'           : $('#user_comment').val()
+    };
+
+    $.ajax({
+      type: "post",
+      url: "test_email.php",
+      data: formData,
+      success: function(a,b,c){
+         alert("Email sent");
+         console.log(a,b,c);
+      },
+      error: function(x,y,z){
+        console.log(x,y,z);
+          alert("Please try to resubmit");
+      }
+    });
+
+
     $('#bs-example-modal-sm').modal('hide');
   });
 
