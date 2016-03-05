@@ -114,7 +114,7 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
     price: 2.95,
     description: 'Lorem ipsum Cillum nulla fugiat sint.',
     canPurchase: true
-  }
+  };
 
 
 })();
@@ -142,6 +142,8 @@ $(function(){
     });
     $("#js-menu-collections").html(list);
 
+    $('.menu-item').on('click', function(e) { $('body').scrollTop(0); });
+
   }).fail(function() {
     console.error("ошибка загрузки меню для коллекций..");
   });
@@ -167,6 +169,7 @@ $(function(){
    productDetailSizes();//moved to collectionsController
   utils();
   //demo();
+
 
 });
 
