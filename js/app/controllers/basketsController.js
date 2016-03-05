@@ -117,10 +117,10 @@ angular.module('app').controller('basketsController', [function(){
           data: formData,
           success: function(a,b,c){
              //alert("Email sent");
-             // console.log(a,b,c);
+            //  console.log(a,b,c);
           },
           error: function(x,y,z){
-            // console.log(x,y,z);
+             console.log(x,y,z);
             //  alert("Please try to resubmit");
           }
         });

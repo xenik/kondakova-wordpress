@@ -60,12 +60,12 @@ foreach ($cart as $item) {
       $item_price = $value;
     }
   }
-  $str .= "<td>".$item_artikul."</td>".
-          "<td>".$item_name."</td>".
-          "<td>".$item_size."</td>".
-          "<td>".$item_qty."</td>".
-          "<td>".$item_price."</td>".
-          "<td>".$item_qt*$item_price."</td>"
+  $str .= "<td>".$item_artikul."</td>
+          <td>".$item_name."</td>
+          <td>".$item_size."</td>
+          <td>".$item_qty."</td>
+          <td>".$item_price."</td>
+          <td>".($item_qty * $item_price)."</td>";
   $str .= "</tr>";
 }
 
@@ -85,7 +85,7 @@ $message = "
 Имя: ". $name ."<br>
 email: " . $email . "<br>
 Телефон:  " . $phone . "<br>
-Комментарий:  " . $comment . "<br>
+Комментарий:  " . $comment . "<br><br><br>
 <table>
 <tr>
 <th>Артикул</th>
