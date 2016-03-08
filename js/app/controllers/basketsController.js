@@ -1,71 +1,78 @@
 angular.module('app').controller('basketsController', [function(){
   // console.log('hello from basketsController');
 
+  function cleanedBasket(){
+    $('#js-basket-table-body').empty();
+    $('#js-basket-table-body').append("<tr><td colspan='9' class='bg-info text-center'> Вы еще не добавляли товары в корзину.</tr>");
+    $('#js-basket-btn-order').addClass('hide');
+    $('#js-basket-table-amout__total').text('0.00');
+  }
+
   if (kondakova.cart && kondakova.cart.length > 0) {
     // console.log(kondakova.cart);
     renderCartItems();
   } else {
-
-    $('#js-basket-table-body').empty();
-    $('#js-basket-table-body').append("<tr><td colspan='7' class='bg-info text-center'> Вы еще не добавляли товары в корзину.</tr>");
-    $('#js-basket-btn-order').addClass('hide');
-
+    cleanedBasket();
   }
 
   function renderCartItems() {
     var tds = '';
+    var total_amount = 0.00;
+    var row_amount   = 0.00;
     $('#js-basket-table-body').empty();
 
 
     $.each( kondakova.cart, function(i, v) {
+      //total_amount = str_to_numeric_to_fixed(total_amount + ((v.price === '') ? "0": (v.qty * v.price)));
+      row_amount = (Number(v.price) * Number(v.qty)).toFixed(2);
+      total_amount = Number(Number(total_amount) + Number(row_amount)).toFixed(2);
 
-      tds += "<tr><td><a href='#detail?" + v.id + "'><img src='"+v.link+"' alt='"+v.name+"'></a></td>" +
+      tds += "<tr><td><a href='#detail?" + v.id + "'>"+v.id+"</a></td>" +
+             "<td><a href='#detail?" + v.id + "'><img src='"+v.link+"' alt='"+v.name+"'></a></td>" +
              "<td><a href='#detail?" + v.id + "'>"+v.name+"</a></td>" +
              "<td>"+v.size+"</td>"+
              "<td><input type='number' value='"+v.qty+"' class='form-control cart_qty' min='1' data-idx='"+i+"'></td>" +
-             "<td class='cart_price'>"+v.price+"</td><td>"+0.00+"</td><td class='cart_amount'>"+((v.price === '') ? '-' : (str_to_numeric_to_fixed(v.qty * v.price)) ) +"</td><td><a href='#basket'><i class='fa fa-trash-o'></i></a></td>"+
+             "<td class='cart_price'>"+v.price+"</td><td>"+0.00+"</td><td class='cart_amount'>"+ row_amount +"</td><td><a href='#basket'><i class='fa fa-trash-o'></i></a></td>"+
              "<td class='hide'>"+v.line_item_id+"</td></tr>";
 
     });
+
+
     $('#js-basket-table-body').append(tds);
+    $('#js-basket-table-amout__total').text(total_amount);
+
+
 
     $('.fa-trash-o').on('click',function() {
-       var line_item_id = $(this).parent().parent().next().text();
-
-      // $.each( kondakova.cart, function (idx, val) {
-      //   if(val.line_item_id == line_item_id) {
-      //     console.log(val);
-      //   }
-      // });
+      var line_item_id = $(this).parent().parent().next().text();
 
       kondakova.cart = kondakova.cart.filter(function(el) { return el.line_item_id != line_item_id;} );
-      renderCartItems();
+
+      $('#js-cart-items').text(kondakova.cart.length);
+      $('#js-cart-items-xs').text(kondakova.cart.length);
+
+      if(kondakova.cart && kondakova.cart.length > 0){
+        renderCartItems();
+      } else {
+        cleanedBasket();
+      }
+
     });
 
-    $('.cart_qty').on('blur', function(e) {
-      // console.log('hello world blur');
-    });
 
     $('.cart_qty').on('change', function(e) {
-      //console.log('hello world change');
       var el = $(this),
           value = el.val(),
-          idx = el.data('idx'); //,
-          // price = el.parent().parent().find('.cart_price').text(),
-          // amount = el.parent().parent().find('.cart_amount').text();
-
-          // console.log(kondakova.cart);
-          // console.log(value);
-          kondakova.cart[idx].qty = Number( Number(value).toFixed(2));
+          idx = el.data('idx');
+          kondakova.cart[idx].qty = Number(value);
           renderCartItems();
     });
 
 
-    $('.cart_qty').on('mouseout', function(e) {
-      // console.log( $(this).val() );
-      kondakova.cart[$(this).data('idx')].qty = Number( Number($(this).val()).toFixed(2));
-      renderCartItems();
-    });
+    // $('.cart_qty').on('mouseout', function(e) {
+    //   kondakova.cart[$(this).data('idx')].qty = Number( Number($(this).val()).toFixed(2));
+    //   renderCartItems();
+    // });
 
     // $('.cart_qty').on('mouseover', function(e) { return false; } );
 
@@ -82,8 +89,7 @@ angular.module('app').controller('basketsController', [function(){
               required: true,
               rangelength: [5,11],
               digits: true
-          },
-          user_comment: "required"
+          }
       // },
       // messages: {
       //     user_name: "Please enter your firstname",
