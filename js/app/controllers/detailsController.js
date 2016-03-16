@@ -44,6 +44,8 @@ angular.module('app').controller('detailsController', [function(){
 
     //console.log(item);
     $('.container  h3.text-uppercase').text(item.name);
+    $('.container  h3.text-uppercase + p.text-muted').text(item.description);
+
 
     if(atelier === undefined){
       console.log('hi from undefined atelier');
@@ -95,6 +97,7 @@ angular.module('app').controller('detailsController', [function(){
         }
 
         $('#js-cart-items').text(kondakova.cart.length);
+        $('#js-cart-items-xs').text(kondakova.cart.length);
       });
 
     } else {
@@ -127,6 +130,7 @@ angular.module('app').controller('detailsController', [function(){
         }
 
         $('#js-cart-items').text(kondakova.cart.length);
+        $('#js-cart-items-xs').text(kondakova.cart.length);
       });
     }
 

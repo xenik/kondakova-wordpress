@@ -157,6 +157,7 @@ $(document).on('click touchstart', '.backtotop', function() {
 
     $('.menu-item').on('click touchstart', function(e) { $('body').scrollTop(0); });
 
+
   }).fail(function() {
     console.error("ошибка загрузки меню для коллекций..");
   });
@@ -172,6 +173,36 @@ $(document).on('click touchstart', '.backtotop', function() {
       }
     }
   };
+
+  $('body').on('click', '#approve_on_letters', function(){
+    console.log('clicked on btn approve on letters');
+    alert('Временная заглушка: Спасибо, что подписались на рассылку.');
+  });
+
+
+  $('body').on('click', '#js-check-promo-codes', function(){
+
+    var code_for_check = $('#js-promo-code').val();
+    var promo = {};
+
+    $.ajax({url: 'js/json/promo.json',type: 'get',dataType:'json'}).done(function(data) {
+      if(data) {
+        $.each(data.codes, function(i,v) {
+          if(v.number == code_for_check) {
+            promo = v;
+          }
+        });
+
+        if(promo && promo.number) {
+          alert('Временная заглушка: Поздарвляем! Вы получаете скидку на сумму ' + promo.amount + promo.type);
+        } else {
+          alert('Временная заглушка: Извините, но данный код не является нашим промо-кодом.');
+        }
+
+      }
+    });
+
+  });
 
 
   //sliderHomepage();
