@@ -3,47 +3,44 @@
 (function() {
 var app = angular.module('app', ['ngCookies', 'ngRoute']);
 
-// CONSTANTS
 app.constant('URLS', {
-  IMAGES: {
-    UNKNOWN: '/images/unknown.png'
-        //AVATAR: '/JQFile/Avatar/'
-      },
-      ROUTES: {
-        ROOT: '/',
-        ABOUT: '/about',
-        COLLECTIONS: '/collections',
-        INFO:'/info',
-        NEWS: '/news',
-        // CONTACTS: '/contacts',
-        PRESS: '/press',
-        SHOP: '/shop',
-        BASKET: '/basket',
-        DETAIL: '/detail'
-      },
-      PATHS: {
-        TEMPLATES: 'views/',
-        MENU: 'views/partials/_menu.html',
-        FOOTER: 'views/partials/_footer2.html'
-        //FOOTER: 'views/partials/_footer.html' // трех колоночный для адреса
-      }
-    });
+  IMAGES: { UNKNOWN: '/images/unknown.png' },
+  ROUTES: {
+    ROOT: '/',
+    ABOUT: '/about',
+    COLLECTIONS: '/collections',
+    INFO:'/info',
+    NEWS: '/news',
+    PRESS: '/press',
+    SHOP: '/shop',
+    BASKET: '/basket',
+    DETAIL: '/detail',
+    POST: '/post'
+  },
+  PATHS: {
+    TEMPLATES: 'views/',
+    MENU: 'views/partials/_menu.html',
+    FOOTER: 'views/partials/_footer2.html'
+  }
+});
 
 app.run(['$rootScope', 'URLS', '$location',
   function ($rootScope, URLS, $location) {
     $rootScope.URLS = URLS;
-  }]);
+
+    window.kondakova = {};
+    window.kondakova.cart = [];
+
+    kondakova.jx = $.ajax({url: './js/json/menu-collections.json',type: 'GET',dataType: 'json'
+           }).done(function(data) { window.kondakova.collections = data.collections; });
+}]);
 
 app.config(['$routeProvider', '$locationProvider', 'URLS',
   function ($routeProvider, $locationProvider, URLS) {
-
         //$locationProvider.hashPrefix('!');
-
         // configuring routing
-        //var path = 'AKondakova' + URLS.PATHS.TEMPLATES;
         var path = '' + URLS.PATHS.TEMPLATES;
 
-        // routing setup
         $routeProvider.when(URLS.ROUTES.ROOT, {
           templateUrl: path + 'root.html',
           controller: 'rootController as vm'
@@ -68,7 +65,8 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
         });
 
         $routeProvider.when(URLS.ROUTES.NEWS, {
-          templateUrl: path + 'news.html'
+          templateUrl: path + 'news.html',
+          controller: 'postsController as ps'
         });
 
         // $routeProvider.when(URLS.ROUTES.CONTACTS, {
@@ -91,10 +89,19 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
           controller: 'detailsController as vm'
         });
 
+        $routeProvider.when(URLS.ROUTES.POST, {
+          templateUrl: path + 'post.html',
+          controller: 'postsController as vm'
+        });
+
+        $routeProvider.when('/post/:id', {
+          templateUrl: 'views/post.html',
+          controller: 'postsController as vm'
+        });
+
         $routeProvider.otherwise({
           redirectTo: '/index.html'
         });
-
 
         //routing DOESN'T work without html5Mode
         //$locationProvider.html5Mode(true);
@@ -103,81 +110,124 @@ app.config(['$routeProvider', '$locationProvider', 'URLS',
         //    //requireBase: false
         //});
       }]);
-
-
-  app.controller('StoreController', function() {
-    this.product = gem;
-  });
-
-  var gem = {
-    name: "Hat",
-    price: 2.95,
-    description: 'Lorem ipsum Cillum nulla fugiat sint.',
-    canPurchase: true
-  };
-
-
 })();
 
 
+(function($){
+    $.fn.extend({
+        bs_danger: function(message, title){
+            var cls='alert-danger';
+            var html='<div class="alert '+cls+' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+            if(typeof title!=='undefined' &&  title!==''){
+                html+='<h4>'+title+'</h4>';
+            }
+            html+='<span>'+message+'</span></div>';
+            $(this).html(html);
+        },
+        bs_warning: function(message, title){
+            var cls='alert-warning';
+            var html='<div class="alert '+cls+' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+            if(typeof title!=='undefined' &&  title!==''){
+                html+='<h4>'+title+'</h4>';
+            }
+            html+='<span>'+message+'</span></div>';
+            $(this).html(html);
+        },
+        bs_info: function(message, title){
+            var cls='alert-info';
+            var html='<div class="alert '+cls+' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+            if(typeof title!=='undefined' &&  title!==''){
+                html+='<h4>'+title+'</h4>';
+            }
+            html+='<span>'+message+'</span></div>';
+            $(this).html(html);
+        },
+        bs_success: function(message, title){
+            var cls='alert-success';
+            var html='<div class="alert '+cls+' alert-dismissable" style="margin-bottom:0;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+            if(typeof title!=='undefined' &&  title!==''){
+                html+='<h4>'+title+'</h4>';
+            }
+            html+='<span>'+message+'</span></div>';
+            $(this).html(html);
+        }
+    });
+})(jQuery);
+
+
+
+
+
 $(function(){
-//{param1: 'value1'}
+  /*
+  var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+  $(document).on('click touchstart', '.backtotop', function() {
+      if (iOS) {
+          $('html, body', parent.document).animate({ scrollTop: $("body").offset().top},1500,"easeOutQuart");
+      } else {
+          $('html, body').animate({ scrollTop: $("body").offset().top},1500,"easeOutQuart");
+      }
+  });
+  */
 
-  window.kondakova = {};
-  window.kondakova.cart = [];
+  // $("body .alert").delay(2000).slideUp(500, function() {
+  //   $(this).alert('close');
+  // });
 
-  $("#js-menu-collections").empty();
-  $.ajax({
-    url: './js/json/menu-collections.json',
-    type: 'GET',
-    dataType: 'json',
-    data: ""
-  }).done(function(data) {
-    //console.info(data.collections);
-    window.kondakova.collections = data.collections;
-      console.log('data.collections came');
-        var list = '';
-    $(data.collections).each(function(index, item) {
+
+  function makeMenu() {
+    var list = '';
+    $(kondakova.collections).each(function(index, item) {
       list += "<li><a href='#collections?collection="+index+"' data-index='"+index+"' class='menu-item'>" + item.name + "</a></li>";
     });
     $("#js-menu-collections").html(list);
-
-/*
-var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
-
-$(document).on('click touchstart', '.backtotop', function() {
-    if (iOS) {
-        $('html, body', parent.document).animate({ scrollTop: $("body").offset().top},1500,"easeOutQuart");
-    } else {
-        $('html, body').animate({ scrollTop: $("body").offset().top},1500,"easeOutQuart");
-    }
-});
-*/
-
-
     $('.menu-item').on('click touchstart', function(e) { $('body').scrollTop(0); });
+  }
 
+  kondakova.jx.done(function(data) { setTimeout(makeMenu,250);  });
 
-  }).fail(function() {
-    console.error("ошибка загрузки меню для коллекций..");
-  });
-  // .always(function() {
-  //   console.log("complete");
-  // });
-
-  window.kondakova.sleep = function(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
-    }
-  };
+  function validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+  }
 
   $('body').on('click', '#approve_on_letters', function(){
     console.log('clicked on btn approve on letters');
-    alert('Временная заглушка: Спасибо, что подписались на рассылку.');
+    //alert('Временная заглушка: Спасибо, что подписались на рассылку.');
+    var name = $(this).parent().find('input')[0].value;
+    var mail = $(this).parent().find('input')[1].value;
+    if(!name || !mail){
+      return false;
+    } else {
+      if(validateEmail(mail)) {
+        $(this).parent().find('input')[0].value = "";
+        $(this).parent().find('input')[1].value = "";
+
+        var formData = { 'name': name, 'mail': mail };
+
+        var d = $.ajax({
+          type: "post",
+          url: "letters.php",
+          data: formData,
+          success: function(a,b,c){
+             //alert("Email sent");
+            //  console.log(a,b,c);
+          },
+          error: function(x,y,z){
+             console.log(x,y,z);
+            //  alert("Please try to resubmit");
+          }
+        });
+
+
+        return true;
+      } else {
+        return false;
+      }
+    }
   });
+
+
 
 
   $('body').on('click', '#js-check-promo-codes', function(){
@@ -194,16 +244,28 @@ $(document).on('click touchstart', '.backtotop', function() {
         });
 
         if(promo && promo.number) {
-          alert('Временная заглушка: Поздарвляем! Вы получаете скидку на сумму ' + promo.amount + promo.type);
+          $('#js-answer-promo-codes').bs_success('Поздарвляем! Вы получаете скидку на сумму ' + promo.amount + promo.type); //, 'title'
+          createAutoClosingAlert(".alert", 3500);
+          var amount = $('#js-basket-table-amout__total').text();
+          amount       = +amount;
+          promo.amount = +promo.amount;
+          kondakova.promo = promo.amount;
+
+          if(amount !== 0){
+            $('#js-basket-table-amout').append('<tr><th colspan="7"><small>Скидка</small></th><th id="js-basket-table-amout__sale"><small>'+
+              (promo.amount).toFixed(2)+'</small></th><th></th></tr>');
+            $('#js-basket-table-amout').append('<tr><th colspan="7"><small>Итого</small></th><th id="js-basket-table-amout__sale"><small>'+
+              (amount-promo.amount).toFixed(2)+'</small></th><th></th></tr>');
+            $('#js-basket-table-amout tr:first-child').addClass('text-line-through');
+          }
         } else {
-          alert('Временная заглушка: Извините, но данный код не является нашим промо-кодом.');
+          $('#js-answer-promo-codes').bs_danger('Извините, но данный код не является нашим промо-кодом.');
+          createAutoClosingAlert(".alert", 3500);
         }
 
       }
     });
-
   });
-
 
   //sliderHomepage();
   //fullScreenContainer();
@@ -213,8 +275,6 @@ $(document).on('click touchstart', '.backtotop', function() {
    productDetailSizes();//moved to collectionsController
   utils();
   //demo();
-
-
 });
 
 
@@ -251,6 +311,14 @@ $(document).on('click touchstart', '.backtotop', function() {
 
   menuSliding();
 */
+
+  function createAutoClosingAlert(selector, delay) {
+    var alert = $(selector).alert();
+    window.setTimeout(function() { alert.alert('close'); }, delay);
+  }
+
+
+
 
 /* picture zoom */
 
