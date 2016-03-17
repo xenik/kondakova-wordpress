@@ -171,3 +171,7 @@ body {
 /*#basket {
   margin-bottom:15px;
 }*/
+
+.text-line-through {
+   text-decoration:line-through;
+}
