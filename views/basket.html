@@ -1,48 +1,41 @@
 <div class="container">
   <div class="box text-center">
     <h3 class="text-uppercase">Корзина</h3>
+    <div id="js-basket-alert" style='padding:5px 0;'></div>
   </div>
 
   <div class="modal fade" id='bs-example-modal-sm' tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="false">
-    <div class="modal-dialog col-xs-12" style='/*margin:0;*/ float:none;'>
-    <!--  modal-sm -->
+    <div class="modal-dialog col-xs-12" style='float:none;'>
       <div class="modal-content">
-         <div class="modal-header"> <!-- style='background-color:#5091da;' -->
+         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" style='color:#fff;'>Оформление заказа</h4>
+          <h4 class="modal-title" style='color:#444;'>Оформление заказа</h4>
         </div>
         <div class="modal-body">
 
-        <div class="">
-          <div class=""> <!--col-sm-12 -->
-            <form id="basket-form" action="" method="post">
+          <form id="basket-form" action="" method="post">
+            <div class="form-group">
+              <label for="user_name">Как вас зовут</label>
+              <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Ваше имя">
+            </div>
 
-              <div class="form-group">
-                <label for="user_name">Как вас зовут</label>
-                <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Ваше имя">
-              </div>
+            <div class="form-group">
+              <label for="user_email">Укажите Вашу почту</label>
+              <input type="email" class="form-control" id="user_email" name="user_email" placeholder="Email..">
+            </div>
 
-              <div class="form-group">
-                <label for="user_email">Укажите Вашу почту</label>
-                <input type="email" class="form-control" id="user_email" name="user_email" placeholder="Email..">
-              </div>
+            <div class="form-group">
+              <label for="user_phone">Укажите Ваш телефон</label>
+              <input type="phone" class="form-control" id="user_phone" name="user_phone" placeholder="89992223344">
+            </div>
 
-              <div class="form-group">
-                <label for="user_phone">Укажите Ваш телефон</label>
-                <input type="phone" class="form-control" id="user_phone" name="user_phone" placeholder="89992223344">
-              </div>
+            <div class="form-group">
+              <label for="user_comment">Комментарий</label>
+              <textarea class="form-control" id="user_comment" name="user_comment" placeholder="Любой текст.." cols='5'></textarea>
+            </div>
 
-              <div class="form-group">
-                <label for="user_comment">Комментарий</label>
-                <textarea class="form-control" id="user_comment" name="user_comment" placeholder="Любой текст.." cols='5'></textarea>
-              </div>
-
-               <input type="submit" class="hide" name="user_submit" id="user_submit">
-            </form>
-          </div>
-        </div>
-
-
+             <input type="submit" class="hide" name="user_submit" id="user_submit">
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>
@@ -51,10 +44,6 @@
       </div>
     </div>
   </div>
-
-
-
-
 
   <div class="col-md-9 clearfix" id="basket">
     <div class="box">
@@ -90,7 +79,6 @@
             <a href="#shop" class="btn btn-default"><i class="fa fa-chevron-left"></i> Продолжить покупки</a>
           </div>
           <div class="pull-right">
-            <!-- <button type="button" class="btn btn-default"><i class="fa fa-refresh"></i> Обновить корзину</button> -->
             <button type="button" id='js-basket-btn-order' class="btn btn-primary" data-toggle="modal" data-target="#bs-example-modal-sm">Оформить заказ <i class="fa fa-chevron-right"></i>
             </button>
           </div>
@@ -100,21 +88,23 @@
     </div>
   </div>
 
-<div class="col-md-3">
-  <div class="box">
-    <div class="box-header">
-      <h4>PROMO-код</h4>
-    </div>
-    <p class="text-muted">Укажите промо-код для получения скидки!</p>
-    <form>
-      <div class="input-group">
-        <input type="text" class="form-control" id='js-promo-code'>
-        <span class="input-group-btn">
-          <button id="js-check-promo-codes" class="btn btn-primary" type="button"><i class="fa fa-gift"></i></button>
-        </span>
+  <div class="col-md-3">
+    <div class="box">
+      <div class="box-header">
+        <h4>PROMO-код</h4>
       </div>
-    </form>
+      <p class="text-muted">Укажите промо-код для получения скидки!</p>
+      <form>
+        <div class="input-group">
+          <input type="text" class="form-control" id='js-promo-code' autocomplete="off">
+          <span class="input-group-btn">
+            <button id="js-check-promo-codes" class="btn btn-primary" type="button"><i class="fa fa-gift"></i></button>
+          </span>
+        </div>
+        <div id="js-answer-promo-codes" style='padding:5px 0;'>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 
 </div>

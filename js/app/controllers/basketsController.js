@@ -3,13 +3,19 @@ angular.module('app').controller('basketsController', [function(){
 
   function cleanedBasket(){
     $('#js-basket-table-body').empty();
+    $('#js-basket-table-amout').empty();
+    $('#js-answer-promo-codes').empty();
+    $('#js-basket-table-amout').append('<tr><th colspan="7">Итого</th><th id="js-basket-table-amout__total"></th><th></th></tr>');
     $('#js-basket-table-body').append("<tr><td colspan='9' class='bg-info text-center'> Вы еще не добавляли товары в корзину.</tr>");
     $('#js-basket-btn-order').addClass('hide');
     $('#js-basket-table-amout__total').text('0.00');
+    $('#js-promo-code').val('');
+    $('#js-cart-items').text('');
+    $('#js-cart-items-xs').text('');
+    kondakova.cart = [];
   }
 
   if (kondakova.cart && kondakova.cart.length > 0) {
-    // console.log(kondakova.cart);
     renderCartItems();
   } else {
     cleanedBasket();
@@ -112,10 +118,11 @@ angular.module('app').controller('basketsController', [function(){
         'user_email'             : $('#user_email').val(),
         'user_phone'             : $('#user_phone').val(),
         'user_comment'           : $('#user_comment').val(),
-        'user_cart'              : kondakova.cart
+        'user_cart'              : kondakova.cart,
+        'user_promo'             : kondakova.promo
         };
 
-        console.warn(formData);
+        // console.warn(formData);
 
         var d = $.ajax({
           type: "post",
@@ -134,6 +141,9 @@ angular.module('app').controller('basketsController', [function(){
         d.done(function(){
           // console.log('dooooooone');
           $('#bs-example-modal-sm').modal('hide');
+          cleanedBasket();
+          $('#js-basket-alert').bs_success('Спасибо, Мы свяжемся с Вами в ближайшее время!');
+          createAutoClosingAlert(".alert", 3500);
         });
     }
   });

@@ -2,6 +2,9 @@ angular.module('app').controller('detailsController', [function(){
   // console.log('hello from detailsController');
   var atelier = location.hash.split('?')[1].split(':')[1];
   var item_id = location.hash.split('?')[1].split(':')[0];
+
+  if (item_id == undefined) { location.hash = '/'; }
+
   // console.log(item_id);
   // console.log(atelier);
   var ajax_products = null;
@@ -28,10 +31,7 @@ angular.module('app').controller('detailsController', [function(){
     ajax_products.promise();
   }
 
-  // console.log('hi before done()');
-
   ajax_products.done(function(a,b,c) {
-    // console.log('hi from inside done()');
     var list = '';
 
     $.each(kondakova.products, function(i, v) {
@@ -42,35 +42,33 @@ angular.module('app').controller('detailsController', [function(){
       });
     });
 
-    //console.log(item);
+    if(!(item)) { location.hash = '/'; }
+
     $('.container  h3.text-uppercase').text(item.name);
     $('.container  h3.text-uppercase + p.text-muted').text(item.description);
 
-
     if(atelier === undefined){
-      console.log('hi from undefined atelier');
+      //console.log('hi from undefined atelier');
       $('#detail-form__atelier').addClass('hide');
       $('#detail-form__all').removeClass('hide');
 
       $('.container  p.price').text(item.price);
       $('#js-details-structure ul').empty();
 
-      $.each(item.sctucture, function(i, v) {
+      $.each(item.structure, function(i, v) {
         list += "<li>"+ v + "</li>";
       });
       $('#js-details-structure ul').append(list);
 
     } else {
-      console.log('hi atelier');
+      //console.log('hi atelier');
       $('#detail-form__atelier').removeClass('hide');
       $('#detail-form__all').addClass('hide');
     }
 
-
     productDetailSizes();
     $('[data-toggle="tooltip"]').tooltip();
     $('#js-details-btn-add-into-cart__on').popover();
-
 
     if(atelier !== undefined){
       console.log('atelier is undefined second time');
@@ -98,10 +96,12 @@ angular.module('app').controller('detailsController', [function(){
 
         $('#js-cart-items').text(kondakova.cart.length);
         $('#js-cart-items-xs').text(kondakova.cart.length);
+
+        $('#js-detail-atelier-alert').bs_success('Вы успешно положили товар в корзину.');
+        createAutoClosingAlert(".alert", 3500);
       });
 
     } else {
-      console.log('..............msg........');
       $('#js-details-btn-add-into-cart__on').on('click',function() {
         var flag = false,
             size = $('[type=radio]:checked').val(),
@@ -131,14 +131,13 @@ angular.module('app').controller('detailsController', [function(){
 
         $('#js-cart-items').text(kondakova.cart.length);
         $('#js-cart-items-xs').text(kondakova.cart.length);
+
+        $('#js-detail-alert').bs_success('Вы успешно положили товар в корзину.');
+        createAutoClosingAlert(".alert", 3500);
       });
     }
-
-
   });
-
-  console.log('hi before exit from detailsController');
-
+//  console.log('hi before exit from detailsController');
 
   productDetailGallery(5000);
 }]);
