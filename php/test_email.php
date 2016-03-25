@@ -72,7 +72,7 @@ foreach ($cart as $item) {
 
 
 //$to = "somebody@example.com, somebodyelse@example.com";
-$to = "xenikSeefka@gmail.com";
+$to = "xenikSeefka@gmail.com, ". $email;
 $subject = "HTML email";
 
 $message = "
