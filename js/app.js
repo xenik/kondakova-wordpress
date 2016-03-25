@@ -235,36 +235,49 @@ $(function(){
     var code_for_check = $('#js-promo-code').val();
     var promo = {};
 
-    $.ajax({url: 'js/json/promo.json',type: 'get',dataType:'json'}).done(function(data) {
-      if(data) {
-        $.each(data.codes, function(i,v) {
-          if(v.number == code_for_check) {
-            promo = v;
+    if(kondakova.cart.length > 0) {
+
+      if(kondakova.promo === undefined) {
+        $.ajax({url: 'js/json/promo.json',type: 'get',dataType:'json'}).done(function(data) {
+          if(data) {
+            $.each(data.codes, function(i,v) {
+              if(v.number == code_for_check) {
+                promo = v;
+              }
+            });
+
+            if(promo && promo.number) {
+              $('#js-answer-promo-codes').bs_success('Поздарвляем! Вы получаете скидку на сумму ' + promo.amount + promo.type); //, 'title'
+              createAutoClosingAlert(".alert", 2500);
+              var amount = $('#js-basket-table-amout__total').text();
+              amount       = +amount;
+              promo.amount = +promo.amount;
+              kondakova.promo = promo.amount;
+
+              if(amount !== 0){
+                $('#js-basket-table-amout').append('<tr><th colspan="7"><small>Скидка</small></th><th id="js-basket-table-amout__sale"><small>'+
+                  (promo.amount).toFixed(2)+'</small></th><th></th></tr>');
+                $('#js-basket-table-amout').append('<tr><th colspan="7"><small>Итого</small></th><th id="js-basket-table-amout__sale-result"><small>'+
+                  (amount-promo.amount).toFixed(2)+'</small></th><th></th></tr>');
+                $('#js-basket-table-amout tr:first-child').addClass('text-line-through');
+              }
+              //kondakova.cart
+            } else {
+              $('#js-answer-promo-codes').bs_danger('Извините, но данный код не является нашим промо-кодом.');
+              createAutoClosingAlert(".alert", 2500);
+            }
+
           }
         });
-
-        if(promo && promo.number) {
-          $('#js-answer-promo-codes').bs_success('Поздарвляем! Вы получаете скидку на сумму ' + promo.amount + promo.type); //, 'title'
-          createAutoClosingAlert(".alert", 3500);
-          var amount = $('#js-basket-table-amout__total').text();
-          amount       = +amount;
-          promo.amount = +promo.amount;
-          kondakova.promo = promo.amount;
-
-          if(amount !== 0){
-            $('#js-basket-table-amout').append('<tr><th colspan="7"><small>Скидка</small></th><th id="js-basket-table-amout__sale"><small>'+
-              (promo.amount).toFixed(2)+'</small></th><th></th></tr>');
-            $('#js-basket-table-amout').append('<tr><th colspan="7"><small>Итого</small></th><th id="js-basket-table-amout__sale"><small>'+
-              (amount-promo.amount).toFixed(2)+'</small></th><th></th></tr>');
-            $('#js-basket-table-amout tr:first-child').addClass('text-line-through');
-          }
-        } else {
-          $('#js-answer-promo-codes').bs_danger('Извините, но данный код не является нашим промо-кодом.');
-          createAutoClosingAlert(".alert", 3500);
-        }
-
+      } else {
+        $('#js-answer-promo-codes').bs_danger('Вы уже использовали промо код.');
+              createAutoClosingAlert(".alert", 2500);
       }
-    });
+  } else {
+    $('#js-answer-promo-codes').bs_danger('На пустой корзине нельзя использовать промо код.');
+          createAutoClosingAlert(".alert", 2500);
+  }
+
   });
 
   //sliderHomepage();
@@ -524,10 +537,10 @@ $(window).resize(function () {
 });
 */
 
-$('body').on('click', function(event) {
+$('body').on('click', 'menu-item', function(event) {
   //console.log($(event.target).hasClass('menu-item'));
-  if ($(event.target).hasClass('menu-item')) {
+//  if ($(event.target).hasClass('menu-item')) {
     $('[data-toggle=collapse]').click();
-  }
+//  }
 });
 

@@ -34,7 +34,7 @@ angular.module('app').controller('basketsController', [function(){
       total_amount = Number(Number(total_amount) + Number(row_amount)).toFixed(2);
 
       tds += "<tr><td><a href='#detail?" + v.id + "'>"+v.id+"</a></td>" +
-             "<td><a href='#detail?" + v.id + "'><img src='"+v.link+"' alt='"+v.name+"'></a></td>" +
+             "<td><a href='#detail?" + v.id + "'><img src='"+v.links[0]+"' alt='"+v.name+"'></a></td>" +
              "<td><a href='#detail?" + v.id + "'>"+v.name+"</a></td>" +
              "<td>"+v.size+"</td>"+
              "<td><input type='number' value='"+v.qty+"' class='form-control cart_qty' min='1' data-idx='"+i+"'></td>" +
@@ -47,6 +47,7 @@ angular.module('app').controller('basketsController', [function(){
     $('#js-basket-table-body').append(tds);
     $('#js-basket-table-amout__total').text(total_amount);
 
+    $('#js-basket-table-amout__sale-result').text( (parseFloat(total_amount-kondakova.promo)).toFixed(2) );
 
 
     $('.fa-trash-o').on('click',function() {
@@ -143,7 +144,7 @@ angular.module('app').controller('basketsController', [function(){
           $('#bs-example-modal-sm').modal('hide');
           cleanedBasket();
           $('#js-basket-alert').bs_success('Спасибо, Мы свяжемся с Вами в ближайшее время!');
-          createAutoClosingAlert(".alert", 3500);
+          createAutoClosingAlert(".alert", 2500);
         });
     }
   });

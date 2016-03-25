@@ -1,5 +1,6 @@
 {
   "codes": [
-    {"number": "123", "amount": "30", "type": "p"}
+    {"number": "123", "amount": "30", "type": "р"},
+    {"number": "555", "amount": "100", "type": "р"}
   ]
 }

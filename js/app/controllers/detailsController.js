@@ -47,18 +47,33 @@ angular.module('app').controller('detailsController', [function(){
     $('.container  h3.text-uppercase').text(item.name);
     $('.container  h3.text-uppercase + p.text-muted').text(item.description);
 
+    //images
+    $('#mainImage').append('<img src="'+item.links[0]+'" alt="" class="img-responsive">');
+    for(var i = 0; i < 3; i++) {
+      console.info(item.links[i]);
+      if(item.links[i]) {
+        $('#thumbs').append('<div class="col-xs-4"><a href="'+item.links[i]+'" class="thumb"> \
+                             <img src="'+item.links[i]+'" alt="" class="img-responsive"></a></div>');
+      }
+    }
+
     if(atelier === undefined){
       //console.log('hi from undefined atelier');
       $('#detail-form__atelier').addClass('hide');
       $('#detail-form__all').removeClass('hide');
 
-      $('.container  p.price').text(item.price);
+      $('.container  p.price').text( (parseFloat(item.price)).toFixed(2) );
       $('#js-details-structure ul').empty();
 
-      $.each(item.structure, function(i, v) {
-        list += "<li>"+ v + "</li>";
-      });
-      $('#js-details-structure ul').append(list);
+      if(item.structure) {
+        $.each(item.structure, function(i, v) {
+          list += "<li>"+ v + "</li>";
+        });
+        $('#js-details-structure ul').append(list);
+      } else {
+        $("#js-details-structure").addClass('hide');
+      }
+
 
     } else {
       //console.log('hi atelier');
@@ -98,7 +113,7 @@ angular.module('app').controller('detailsController', [function(){
         $('#js-cart-items-xs').text(kondakova.cart.length);
 
         $('#js-detail-atelier-alert').bs_success('Вы успешно положили товар в корзину.');
-        createAutoClosingAlert(".alert", 3500);
+        createAutoClosingAlert(".alert", 2500);
       });
 
     } else {
@@ -133,7 +148,7 @@ angular.module('app').controller('detailsController', [function(){
         $('#js-cart-items-xs').text(kondakova.cart.length);
 
         $('#js-detail-alert').bs_success('Вы успешно положили товар в корзину.');
-        createAutoClosingAlert(".alert", 3500);
+        createAutoClosingAlert(".alert", 2500);
       });
     }
   });
