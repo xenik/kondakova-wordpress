@@ -31,5 +31,18 @@ angular.module('app').controller('collectionsController', [function(){
     });
 
     $('#collections-content').append(divs);
-//  }
+
+    $('#collections-content').on('click.modal', 'img', function(){
+      kondakova.currentCollectionItem = $(this)[0].src;
+    });
+
+    $('#product-quick-view-modal').on('show.bs.modal',function(){
+      if(kondakova.currentCollectionItem) {
+        $(this).find('img').attr('src', kondakova.currentCollectionItem);
+      } else {
+        $(this).find('img').attr({'src': '', 'alt': 'Фото не найдено'});
+      }
+    });
+
+
 }]);

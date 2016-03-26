@@ -249,16 +249,19 @@ $(function(){
             if(promo && promo.number) {
               $('#js-answer-promo-codes').bs_success('Поздарвляем! Вы получаете скидку на сумму ' + promo.amount + promo.type); //, 'title'
               createAutoClosingAlert(".alert", 2500);
-              var amount = $('#js-basket-table-amout__total').text();
+              var amount = $('#js-basket-table-amout__total').text().trim().replace(' ','');
               amount       = +amount;
               promo.amount = +promo.amount;
               kondakova.promo = promo.amount;
 
+              console.log(amount);
+              console.log(promo.amount);
+
               if(amount !== 0){
-                $('#js-basket-table-amout').append('<tr><th colspan="7"><small>Скидка</small></th><th id="js-basket-table-amout__sale"><small>'+
-                  (promo.amount).toFixed(2)+'</small></th><th></th></tr>');
-                $('#js-basket-table-amout').append('<tr><th colspan="7"><small>Итого</small></th><th id="js-basket-table-amout__sale-result"><small>'+
-                  (amount-promo.amount).toFixed(2)+'</small></th><th></th></tr>');
+                $('#js-basket-table-amout').append('<tr style="font-size: 1.5rem;"><th colspan="5"><small>Скидка</small></th><th colspan="2" class="text-right" id="js-basket-table-amout__sale"><small>'+
+                  numbersToMoneyView(promo.amount.toString())+' <i class="fa fa-rub"></i></small></th><th></th></tr>');
+                $('#js-basket-table-amout').append('<tr><th colspan="5">Итого</th><th colspan="2" class="text-right" id="js-basket-table-amout__sale-result">'+
+                  numbersToMoneyView((amount-promo.amount).toString())+' <i class="fa fa-rub"></i></th><th></th></tr>');
                 $('#js-basket-table-amout tr:first-child').addClass('text-line-through');
               }
               //kondakova.cart
@@ -330,6 +333,16 @@ $(function(){
     window.setTimeout(function() { alert.alert('close'); }, delay);
   }
 
+
+function numbersToMoneyView(number) {
+  var chunks = [];
+
+  for (var i = number.length; i >= 0; i -= 3) {
+      chunks.push(number.substring(i, i - 3));
+  }
+
+  return chunks.reverse().join(' ');
+}
 
 
 
