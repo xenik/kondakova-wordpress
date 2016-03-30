@@ -207,7 +207,7 @@ $(function(){
 
         var d = $.ajax({
           type: "post",
-          url: "letters.php",
+          url: "php/letters.php",
           data: formData,
           success: function(a,b,c){
              //alert("Email sent");
