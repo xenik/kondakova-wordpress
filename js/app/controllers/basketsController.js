@@ -1,6 +1,10 @@
 angular.module('app').controller('basketsController', [function(){
   // console.log('hello from basketsController');
 
+  if ($('#navigation').hasClass('in')) {
+    $('.navbar-toggle.btn-primary[data-toggle=collapse]').click();
+  }
+
   function cleanedBasket(){
     $('#js-basket-table-body').empty();
     $('#js-basket-table-amout').empty();

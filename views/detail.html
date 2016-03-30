@@ -5,11 +5,7 @@
   </div>
   <div class="col-md-9">
     <div class="row" id="productMain">
-      <div class="col-sm-6">
-        <div id="mainImage">
-        </div>
-
-      </div>
+      <div class="col-sm-6"><div id="mainImage"></div></div>
       <div class="col-sm-6">
         <div class="box">
           <form id='detail-form__all'>
@@ -32,15 +28,12 @@
                 <input type="radio" id="size_l" name="size" value="46" class="size-input">
               </label>
             </div>
-
-            <p class="price"></p>
+            <p class="price hide" style="text-decoration: line-through;font-size: 28px;margin: 10px 0 0 0;
+  margin-bottom: -40px;"><b id='js-detail-sale-price'></b> <i class="fa fa-rub"></i></p>
+            <p class="price" style="color: #5091da;"><b id='js-detail-price'></b> <i class="fa fa-rub" style='font-size:2.6rem;'></i></p>
             <div id="js-detail-alert" style="padding:5px 0;"></div>
-            <!-- <div class="alert alert-success alert-dismissable" style='margin-bottom:0;'><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><span>Вы успешно добавили товар в корзину!</span></div> -->
             <p class="text-center">
               <button id='js-details-btn-add-into-cart__on' type="button" class="btn btn-primary hide"><i class="fa fa-shopping-cart"></i>Добавить в корзину</button>
-              <!--  data-toggle="popover" data-trigger="focus" data-placement="top" title="" data-content="Вы успешно добавили товар в свою корзину." -->
-              <!-- <button type="submit" class="btn btn-default disabled" style='border:none;' onClick='return false;'><i class="fa fa-shopping-cart" disabled></i>Добавить в корзину</button> -->
-
               <a href='' id='js-details-btn-add-into-cart__off' class='btn btn-default'  style="cursor:not-allowed;" onClick='return false;' data-toggle="tooltip" data-placement="top" title="" data-original-title="Выберите размер, прежде чем добавить товар в корзину"><i class="fa fa-shopping-cart" disabled></i>Добавить в корзину</a>
             </p>
           </form>
@@ -55,35 +48,16 @@
               <button id='js-details-btn-add-into-cart__on__atelier' type="submit" class="btn btn-primary" data-toggle="popover" data-trigger="focus" data-placement="top" title="" data-content="Вы успешно добавили товар в свою корзину."><i class="fa fa-shopping-cart"></i>Сшить</button>
             </p>
           </form>
-
         </div>
 
-        <div class="row" id="thumbs">
-<!--           <div class="col-xs-4">
-            <a href="img/detailbig1.jpg" class="thumb">
-              <img src="img/detailsquare.jpg" alt="" class="img-responsive">
-            </a>
-          </div>
-          <div class="col-xs-4">
-            <a href="img/detailbig2.jpg" class="thumb">
-              <img src="img/detailsquare2.jpg" alt="" class="img-responsive">
-            </a>
-          </div>
-          <div class="col-xs-4">
-            <a href="img/detailbig3.jpg" class="thumb">
-              <img src="img/detailsquare3.jpg" alt="" class="img-responsive">
-            </a>
-          </div> -->
-        </div>
+        <div class="row" id="thumbs"></div>
       </div>
     </div>
   </div>
   <div class="col-sm-3">
     <div class="box" id="js-details-structure">
       <h4>Состав:</h4>
-      <ul>
-        <li>Любая ткань из нашего ассортимента</li>
-      </ul>
+      <ul><li>Любая ткань из нашего ассортимента</li></ul>
     </div>
   </div>
 </div>

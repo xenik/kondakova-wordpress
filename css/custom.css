@@ -36,18 +36,19 @@ body {
   height: 100%;
 }
 #all {
-  display: table;
-  width: 100%;
-  min-height: 100%;
+  /*display: table;*/
+  /*width: 100%;*/
+  /*min-height: 100%;*/
   padding-top: 80px;
+  overflow: auto;
 }
 #all #all-content {
-  display: table-row;
-  height: 100%;
+  /*display: table-row;*/
+  /*height: 100%;*/
 }
 #all #all-footer {
-  display: table-row;
-  width: 100%;
+  /*display: table-row;*/
+  /*width: 100%;*/
 }
 #all #map {
   margin-bottom: 20px;

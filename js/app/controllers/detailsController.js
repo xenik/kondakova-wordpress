@@ -57,12 +57,6 @@ angular.module('app').controller('detailsController', [function(){
       }
     }
 
-    if(item.sales_price) {
-      $('#mainImage').after('<div class="ribbon sale"><div class="theribbon">SALE</div><div class="ribbon-background"></div></div>');
-    }
-
-
-
     if(atelier === undefined){
       //console.log('hi from undefined atelier');
       $('#detail-form__atelier').addClass('hide');
@@ -70,15 +64,15 @@ angular.module('app').controller('detailsController', [function(){
 
       //$('.container  p.price').text( (parseFloat(item.price)).toFixed(2) );
 
-
       if(item.sales_price) {
-        $('.container  p.price').text( numbersToMoneyView(item.sales_price) );
-        // $('.container  p.price').after("<p class='price price0 text-through'>"+numbersToMoneyView(item.price)+"</p>");
+        $('#mainImage').after('<div class="ribbon sale"><div class="theribbon">SALE</div><div class="ribbon-background"></div></div>');
+        $('#js-detail-sale-price').text(numbersToMoneyView(item.price)).parent().removeClass('hide');
+        $('#js-detail-price').text(numbersToMoneyView(item.sales_price));
       } else {
-        $('.container  p.price').text( numbersToMoneyView(item.price) );
+        $('#js-detail-price').text(numbersToMoneyView(item.price));
       }
 
-      $('.container  p.price').append("&nbsp;<i class='fa fa-rub' style='font-size:2.6rem;'></i>");
+      // $('.container  p.price').append("&nbsp;<i class='fa fa-rub' style='font-size:2.6rem;'></i>");
       $('#js-details-structure ul').empty();
 
       if(item.structure) {
@@ -89,10 +83,7 @@ angular.module('app').controller('detailsController', [function(){
       } else {
         $("#js-details-structure").addClass('hide');
       }
-
-
     } else {
-      //console.log('hi atelier');
       $('#detail-form__atelier').removeClass('hide');
       $('#detail-form__all').addClass('hide');
     }

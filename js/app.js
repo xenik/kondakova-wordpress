@@ -561,3 +561,13 @@ $('body').on('click', '#js-shop-products', function(event) {
     $('body').scrollTop(0);
   }
 });
+
+
+$('body').on('click', '.to_basket', function(event){
+  $('body').scrollTop(0);
+});
+
+
+// $( window ).resize(function() {
+//   $('#all').css('height', (($(window).outerHeight(true) - $('#navbar').outerHeight(true) - $('#all-footer').outerHeight(true)).toString() + 'px'));
+// });
