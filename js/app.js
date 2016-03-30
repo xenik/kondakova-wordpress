@@ -550,10 +550,14 @@ $(window).resize(function () {
 });
 */
 
-$('body').on('click', 'menu-item', function(event) {
-  //console.log($(event.target).hasClass('menu-item'));
-//  if ($(event.target).hasClass('menu-item')) {
+$('body').on('click', '.menu-item', function(event) {
+  if ($(event.target).hasClass('menu-item')) {
     $('[data-toggle=collapse]').click();
-//  }
+  }
 });
 
+$('body').on('click', '#js-shop-products', function(event) {
+  if ($(event.target).hasClass('image1')) {
+    $('body').scrollTop(0);
+  }
+});
