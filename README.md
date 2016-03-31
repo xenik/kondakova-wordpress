@@ -14,8 +14,6 @@ TODO:
 + 4) размеры Итого в корзинке поменять местами, после применения скидки
 + 5) убрать колонку скидка в корзинке
 
-6) скидка в корзинке  10% - 1000p  или 100р
-
 + 7) <div class="product"><div class="image"><a href="#detail?30122"><img src="img/collections/autumn-winter-2015/sherst.palto.s.kashemirom/IMG_9351.jpg" alt="product" class="img-responsive image1"></a></div>
  <div class="ribbon sale">   <div class="theribbon">SALE</div> <div class="ribbon-background"></div> </div>
     <div class="text"><h3><a href="#detail?30122" data-toggle="modal" data-target="#product-quick-view-modal">Шерстяное пальто с кашемиром</a></h3>
@@ -51,3 +49,9 @@ A: На Iphone 5s, 6, MacBook 15", Desktop 24" видно. браузеры Safa
 A: Подставил большое фото и открылась большая фотка на всю площадь модального окошка (четвертая позиция в коллекции).
 
 7) в корзине видно только кусок таблицы (начало)
+A: исправлено
+
+
+-------
+6) скидка в корзинке  10% - 1000p  или 100р
+11) почту
