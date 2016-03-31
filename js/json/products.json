@@ -1,14 +1,8 @@
 {"category": [
   {"name": "skirts",
-  "items": [
-    {"id":"10001","name": "TEST", "links": ["img/collections/IMG_8961.jpg"], "price": "100", "description": "bla-bla-bla 1",
-     "structure": ["Полиэстер","Ткань 1"," Ткань 2"]}
-  ]},
+  "items": []},
   {"name": "clothes",
-  "items": [
-    {"id":"10002","name": "TEST2", "links": ["img/collections/IMG_9292.jpg"], "price": "50", "description": "bla-bla-bla 2",
-     "structure": ["Полиэстер","Ткань 1"," Ткань 2", "Ткань 4", "Ткань 5"]}
-  ]},
+  "items": []},
   {"name": "overcoat",
   "items": [{
     "id":"30001",
@@ -23,17 +17,17 @@
     {
     "id":"30122",
     "name": "Шерстяное пальто с кашемиром",
-    "links": ["img/collections/autumn-winter-2015/sherst.palto.s.kashemirom/IMG_9351.jpg",
-      "img/collections/autumn-winter-2015/sherst.palto.s.kashemirom/IMG_9378.jpg",
-      "img/collections/autumn-winter-2015/sherst.palto.s.kashemirom/IMG_9385.JPG",
-      "img/collections/autumn-winter-2015/sherst.palto.s.kashemirom/IMG_9380.jpg"],
+    "links": ["img/collections/autumn-winter-2015/sherst.palto.s.kashemirom/pIMG_9351.jpg",
+      "img/collections/autumn-winter-2015/sherst.palto.s.kashemirom/pIMG_9378.jpg",
+      "img/collections/autumn-winter-2015/sherst.palto.s.kashemirom/pIMG_9385.JPG",
+      "img/collections/autumn-winter-2015/sherst.palto.s.kashemirom/pIMG_9380.jpg"],
     "price": "41500",
     "description": "Шерстяное пальто с кашемиро со складками на спине.",
     "structure": ["80% шерсти", "20% кашемир","Подкладка: 100% принтованный шелк"]}
   ]},
   {"name": "atelier",
   "items": [
-    {"id":"10003","name": "TEST-atelier", "links": ["img/collections/IMG_9175.jpg"], "price": "0", "description": "bla-bla-bla 3",
+    {"id":"10003","name": "TEST-atelier", "links": ["img/collections/autumn-winter-2015/ubka.s.razrezami.i.skladkami/pIMG_9292.jpg"], "price": "0", "description": "Вот такая фот юбчонка",
      "structure": ["Ткань 1"," Ткань 2"]}
   ]}
 ]}

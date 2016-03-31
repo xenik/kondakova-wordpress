@@ -1,5 +1,5 @@
 'use strict';
-
+//http://minimal.ondrejsvestka.cz/1-3-3/basket.html
 (function() {
 var app = angular.module('app', ['ngCookies', 'ngRoute']);
 
@@ -202,8 +202,7 @@ $(function(){
   }
 
   $('body').on('click', '#approve_on_letters', function(){
-    console.log('clicked on btn approve on letters');
-    //alert('Временная заглушка: Спасибо, что подписались на рассылку.');
+    // console.log('clicked on btn approve on letters');
     var name = $(this).parent().find('input')[0].value;
     var mail = $(this).parent().find('input')[1].value;
     if(!name || !mail){
@@ -228,7 +227,6 @@ $(function(){
             //  alert("Please try to resubmit");
           }
         });
-
 
         return true;
       } else {
@@ -264,8 +262,8 @@ $(function(){
               promo.amount = +promo.amount;
               kondakova.promo = promo.amount;
 
-              console.log(amount);
-              console.log(promo.amount);
+              // console.log(amount);
+              // console.log(promo.amount);
 
               if(amount !== 0){
                 $('#js-basket-table-amout').append('<tr style="font-size: 1.5rem;"><th colspan="5"><small>Скидка</small></th><th colspan="2" class="text-right" id="js-basket-table-amout__sale"><small>'+
