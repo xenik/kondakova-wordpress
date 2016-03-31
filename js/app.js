@@ -30,6 +30,16 @@ app.run(['$rootScope', 'URLS', '$location',
 
     window.kondakova = {};
     window.kondakova.cart = [];
+    window.kondakova.cart_sum = function() {
+      var amount = 0;
+      $.each(kondakova.cart, function(i,v){
+        amount += v.qty * (v.sales_price ? v.sales_price : v.price);
+      });
+      if(kondakova.promo) {
+        amount -= kondakova.promo;
+      }
+      return amount;
+    };
 
     kondakova.jx = $.ajax({url: './js/json/menu-collections.json',type: 'GET',dataType: 'json'
            }).done(function(data) { window.kondakova.collections = data.collections; });

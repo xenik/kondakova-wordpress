@@ -1,13 +1,10 @@
 angular.module('app').controller('collectionsController', [function(){
 
-  // if ( kondakova.collections == undefined ) {
-  //   console.log('kondakova.collections == undefined');
-  //   $('#collections').find('h3').text('Ого! Коллекция потерялась.. попробуйте открыть ее еще раз..');
-  // } else {
-
     var number_of_collection = location.hash.split('=')[1];
 
-    if (number_of_collection == undefined) { location.hash = '/'; }
+    if (number_of_collection == undefined) {
+      location.hash = '/';
+    }
 
     var collection = kondakova.collections[number_of_collection], divs = '';
 
@@ -31,8 +28,7 @@ angular.module('app').controller('collectionsController', [function(){
     });
 
     $('#collections-content').append(divs);
-
-    $('#collections-content').on('click.modal', 'img', function(){
+    $('#collections-content').on('click.beforemodal', 'img', function(){
       kondakova.currentCollectionItem = $(this)[0].src;
     });
 
@@ -43,6 +39,4 @@ angular.module('app').controller('collectionsController', [function(){
         $(this).find('img').attr({'src': '', 'alt': 'Фото не найдено'});
       }
     });
-
-
 }]);

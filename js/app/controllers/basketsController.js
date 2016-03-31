@@ -1,5 +1,4 @@
 angular.module('app').controller('basketsController', [function(){
-  // console.log('hello from basketsController');
 
   if ($('#navigation').hasClass('in')) {
     $('.navbar-toggle.btn-primary[data-toggle=collapse]').click();
@@ -17,6 +16,7 @@ angular.module('app').controller('basketsController', [function(){
     $('#js-cart-items').text('');
     $('#js-cart-items-xs').text('');
     kondakova.cart = [];
+    kondakova.promo = undefined;
   }
 
   if (kondakova.cart && kondakova.cart.length > 0) {
@@ -51,7 +51,6 @@ angular.module('app').controller('basketsController', [function(){
              "<td><input type='number' value='"+v.qty+"' class='form-control cart_qty' min='1' data-idx='"+i+"'></td>" +
              "<td class='cart_price'>"+numbersToMoneyView(price)+" <i class='fa fa-rub'></i></td><td class='cart_amount'>"+ numbersToMoneyView(row_amount) +" <i class='fa fa-rub'></i></td><td><a href='#basket'><i class='fa fa-trash-o'></i></a></td>"+
              "<td class='hide'>"+v.line_item_id+"</td></tr>";
-
     });
 
 
@@ -86,15 +85,6 @@ angular.module('app').controller('basketsController', [function(){
           kondakova.cart[idx].qty = Number(value);
           renderCartItems();
     });
-
-
-    // $('.cart_qty').on('mouseout', function(e) {
-    //   kondakova.cart[$(this).data('idx')].qty = Number( Number($(this).val()).toFixed(2));
-    //   renderCartItems();
-    // });
-
-    // $('.cart_qty').on('mouseover', function(e) { return false; } );
-
   }
 
   $("#basket-form").validate({
@@ -109,22 +99,9 @@ angular.module('app').controller('basketsController', [function(){
               rangelength: [5,11],
               digits: true
           }
-      // },
-      // messages: {
-      //     user_name: "Please enter your firstname",
-      //     user_email: "Please enter your lastname",
-      //     user_phone: {
-      //         required: "Please provide a password",
-      //         minlength: "Your password must be at least 5 characters long"
-      //     },
-      //     user_email: "Please enter a valid email address",
-      //     user_comment: "Please accept our policy"
       },
       errorClass: "text-danger",
       submitHandler: function(form) {
-        //   form.submit();
-           // console.warn(form);
-        //$('#js-basket-btn-order-send').click();
 
         var formData = {
         'user_name'              : $('#user_name').val(),
@@ -132,27 +109,23 @@ angular.module('app').controller('basketsController', [function(){
         'user_phone'             : $('#user_phone').val(),
         'user_comment'           : $('#user_comment').val(),
         'user_cart'              : kondakova.cart,
-        'user_promo'             : kondakova.promo
+        'user_promo'             : (kondakova.promo ? kondakova.promo : ""),
+        'user_amount'            : kondakova.cart_sum()
         };
-
-        // console.warn(formData);
 
         var d = $.ajax({
           type: "post",
-          url: "test_email.php",
+          url: "php/basket.php",
           data: formData,
           success: function(a,b,c){
-             //alert("Email sent");
             //  console.log(a,b,c);
           },
           error: function(x,y,z){
-             console.log(x,y,z);
-            //  alert("Please try to resubmit");
+             // console.log(x,y,z);
           }
         });
 
         d.done(function(){
-          // console.log('dooooooone');
           $('#bs-example-modal-sm').modal('hide');
           cleanedBasket();
           $('#js-basket-alert').bs_success('Спасибо, Мы свяжемся с Вами в ближайшее время!');
@@ -162,7 +135,6 @@ angular.module('app').controller('basketsController', [function(){
   });
 
   $('#js-basket-btn-order-send').on('click', function() {
-    //alert("Спасибо, мы свяжемся с Вами в близжайшее время! \n p.s. Я не успел подключить отправку на почту. \n наверное нужно очищать корзину, да?");
     $("#basket-form").submit();
   });
 

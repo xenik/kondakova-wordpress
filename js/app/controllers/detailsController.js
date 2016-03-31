@@ -1,19 +1,13 @@
 angular.module('app').controller('detailsController', [function(){
-  // console.log('hello from detailsController');
   var atelier = location.hash.split('?')[1].split(':')[1];
   var item_id = location.hash.split('?')[1].split(':')[0];
 
   if (item_id == undefined) { location.hash = '/'; }
 
-  // console.log(item_id);
-  // console.log(atelier);
   var ajax_products = null;
   var item = null;
 
-  //console.log(item_id);
-
   if(kondakova.products == undefined) {
-    // console.log('hi from undefined...');
     ajax_products = $.ajax({
       url: 'js/json/products.json',
       type: 'GET',
@@ -25,7 +19,6 @@ angular.module('app').controller('detailsController', [function(){
       console.error("Ошибка загрузки товара c товаром: " + item_id);
     });
   } else {
-    // console.log('hi from new deffered()');
     ajax_products = $.Deferred();
     ajax_products.resolve('true');
     ajax_products.promise();
@@ -50,7 +43,6 @@ angular.module('app').controller('detailsController', [function(){
     //images
     $('#mainImage').append('<img src="'+item.links[0]+'" alt="" class="img-responsive">');
     for(var i = 0; i < 3; i++) {
-      console.info(item.links[i]);
       if(item.links[i]) {
         $('#thumbs').append('<div class="col-xs-4"><a href="'+item.links[i]+'" class="thumb"> \
                              <img src="'+item.links[i]+'" alt="" class="img-responsive"></a></div>');
@@ -58,11 +50,8 @@ angular.module('app').controller('detailsController', [function(){
     }
 
     if(atelier === undefined){
-      //console.log('hi from undefined atelier');
       $('#detail-form__atelier').addClass('hide');
       $('#detail-form__all').removeClass('hide');
-
-      //$('.container  p.price').text( (parseFloat(item.price)).toFixed(2) );
 
       if(item.sales_price) {
         $('#mainImage').after('<div class="ribbon sale"><div class="theribbon">SALE</div><div class="ribbon-background"></div></div>');
@@ -72,7 +61,6 @@ angular.module('app').controller('detailsController', [function(){
         $('#js-detail-price').text(numbersToMoneyView(item.price));
       }
 
-      // $('.container  p.price').append("&nbsp;<i class='fa fa-rub' style='font-size:2.6rem;'></i>");
       $('#js-details-structure ul').empty();
 
       if(item.structure) {
@@ -93,7 +81,6 @@ angular.module('app').controller('detailsController', [function(){
     $('#js-details-btn-add-into-cart__on').popover();
 
     if(atelier !== undefined){
-      console.log('atelier is undefined second time');
       $('#js-details-btn-add-into-cart__on__atelier').on('click',function() {
         var flag = false,
             cart_line_item = {};
@@ -128,7 +115,6 @@ angular.module('app').controller('detailsController', [function(){
         var flag = false,
             size = $('[type=radio]:checked').val(),
             cart_line_item = {};
-        // item.sizes = item.sizes || [];
           Object.keys(item).forEach(function(key) {
             cart_line_item[key] = item[key];
           });
@@ -146,8 +132,6 @@ angular.module('app').controller('detailsController', [function(){
           cart_line_item.qty = 1;
           cart_line_item.size = size;
           cart_line_item.line_item_id = (new Date()).getTime();
-          // console.log(cart_line_item);
-          // console.log(kondakova.products);
           kondakova.cart.push(cart_line_item);
         }
 
@@ -159,7 +143,5 @@ angular.module('app').controller('detailsController', [function(){
       });
     }
   });
-//  console.log('hi before exit from detailsController');
-
   productDetailGallery(5000);
 }]);

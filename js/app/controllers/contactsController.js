@@ -12,18 +12,6 @@ angular.module('app').controller('contactsController', [function(){
                             hintContent: 'A Kondakova',//'Собственный значок метки',
                             balloonContent: 'A Kondakova office'//'Это красивая метка'
                         }
-                        //    , {
-                        //    // Опции.
-                        //    // Необходимо указать данный тип макета.
-                        //    iconLayout: 'default#image',
-                        //    // Своё изображение иконки метки.
-                        //    iconImageHref: 'images/myIcon.gif',
-                        //    // Размеры метки.
-                        //    iconImageSize: [30, 42],
-                        //    // Смещение левого верхнего угла иконки относительно
-                        //    // её "ножки" (точки привязки).
-                        //    iconImageOffset: [-3, -42]
-                        //}
                     );
 
                 myMap.geoObjects.add(myPlacemark);
