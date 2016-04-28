@@ -41,11 +41,11 @@ angular.module('app').controller('detailsController', [function(){
     $('.container  h3.text-uppercase + p.text-muted').text(item.description);
 
     //images
-    $('#mainImage').append('<img src="'+item.links[0]+'" alt="" class="img-responsive">');
+    $('#mainImage').append('<img src="img/collections/'+item.links[0]+'" alt="" class="img-responsive">');
     for(var i = 0; i < 3; i++) {
       if(item.links[i]) {
-        $('#thumbs').append('<div class="col-xs-4"><a href="'+item.links[i]+'" class="thumb"> \
-                             <img src="'+item.links[i]+'" alt="" class="img-responsive"></a></div>');
+        $('#thumbs').append('<div class="col-xs-4"><a href="img/collections/'+item.links[i]+'" class="thumb"> \
+                             <img src="img/collections/'+item.links[i]+'" alt="" class="img-responsive"></a></div>');
       }
     }
 

@@ -1,13 +1,14 @@
 {"collections": [
   {"name": "fall-winter 2015/2016",
-  "images": ["img/collections/autumn-winter-2015/kawemirovoe.palto/pIMG_9442.jpg",
-             "img/collections/autumn-winter-2015/plat.so.skladkami.na.spine/pIMG_9175.jpg",
-             "img/collections/autumn-winter-2015/platyespish.ubkoy/pIMG_9871.jpg",
-             "img/collections/autumn-winter-2015/sherst.palto.s.kashemirom/pIMG_9385.jpg",
-             "img/collections/autumn-winter-2015/sherst.pijak.so.skladkami.na.plechah/pIMG_9675.jpg",
-             "img/collections/autumn-winter-2015/ubka.s.razrezami.i.skladkami/pIMG_9292.jpg",
-             "img/collections/autumn-winter-2015/udlinen.ubka.is.shersti.bukle/pIMG_9041.jpg"
-             ]}
+  "images": [["autumn-winter-2015/kawemirovoe.palto/pIMG_9442.jpg",""],
+             ["autumn-winter-2015/plat.so.skladkami.na.spine/pIMG_9175.jpg",""],
+             ["autumn-winter-2015/platyespish.ubkoy/pIMG_9871.jpg",""],
+             ["autumn-winter-2015/sherst.palto.s.kashemirom/pIMG_9385.jpg",""],
+             ["autumn-winter-2015/sherst.pijak.so.skladkami.na.plechah/pIMG_9675.jpg",""],
+             ["autumn-winter-2015/ubka.s.razrezami.i.skladkami/pIMG_9292.jpg",""],
+             ["autumn-winter-2015/udlinen.ubka.is.shersti.bukle/pIMG_9041.jpg",""]
+             ]},
+  {"name": "SS16",
+  "images": [["SS16/Midi-s-povyazkoj/3I1A5346.JPG", "SS16/Midi-s-povyazkoj/col_3I1A5347.jpg"],
+             ["SS16/Sarafan/3I1A5274.JPG", "SS16/Sarafan/col_3I1A5342.jpg"]]}
 ]}
-
-
